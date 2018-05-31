@@ -12,7 +12,7 @@ VirusTotal not only tells you whether a given antivirus solution detected a subm
 The same is true for URL scanners, most of which will discriminate between malware sites, phishing sites, suspicious sites, etc. 
 Some engines will provide additional information, stating explicitly whether a given URL belongs to a particular botnet, which brand is targeted by a given phishing site, and so on.
  
-##### Lookups integrated with WEBROOT
+##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
 ##### Retrieve URL scan reports  
 The URL for which you want to retrieve the most recent report
@@ -139,12 +139,12 @@ The Lookup call returns output in the following structure for available data
 
 
 
-### Using the BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
+### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
 
-  https://github.com/dnif/lookup-brightcloud
+  https://github.com/dnif/lookup-webroot
 
-#### Getting started with BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF
+#### Getting started with WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF
 
 1. #####    Login to your Data Store, Correlator, and A10 containers.  
    [ACCESS DNIF CONTAINER VIA SSH](https://dnif.it/docs/guides/tutorials/access-dnif-container-via-ssh.html)
@@ -154,11 +154,11 @@ $cd /dnif/CnxxxxxxxxxxxxV8/lookup_plugins/
 ```
 3. #####   Clone using the following command  
 ```  
-git clone https://github.com/dnif/lookup-brightcloud.git brightcloud
+git clone https://github.com/dnif/lookup-webroot.git webroot
 ```
-4. #####   Move to the ‘/dnif/<Deployment-key/lookup_plugins/brightcloud/’ folder path and open dnifconfig.yml configuration file     
+4. #####   Move to the ‘/dnif/<Deployment-key/lookup_plugins/webroot/’ folder path and open dnifconfig.yml configuration file     
     
-   Replace the <tags> with your BRIGHTCLOUD THREAT INTELLIGENCE oemid,deviceid,uid
+   Replace the <tags> with your WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE oemid,deviceid,uid
 ```
 lookup_plugin:
   BRIGHTCLOUD_OEMID: <Add_your_oemid_here>
