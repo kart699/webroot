@@ -3,11 +3,9 @@
 
 ### Overview
 
-Webroot is the largest privately held internet security organisation based in the United States operating globally across North America, Europe and the Asia Pacific region.   
-Webroots BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
-The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats.     
-This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors.  
-The service also provides information such as historical and geolocation data to help security admins make better threat decisions.   
+Webroot is the largest privately held internet security organisation based in the United States operating globally across North America, Europe and the Asia Pacific region.Webroots BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
+
+The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats.This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors.The service also provides information such as historical and geolocation data to help security admins make better threat decisions.   
 Webroot® BrightCloud Security Services include the following catagories
 ##### Web Classifications
 Provides content classification for billions of webpages to keep users safe from online threats
