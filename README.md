@@ -23,16 +23,15 @@ Provides dynamic file reputation intelligence of known malicious and whitelisted
 
 ##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
-##### Retrieve URL scan reports  
-The URL for which you want to retrieve the most recent report
-- input : A URL for which VirusTotal will retrieve the most recent report on the given URL.
-          You may also specify a scan_id (sha256-timestamp as returned by the URL submission API) to access a specific                 report.
+##### Retrieve URL information  
+Returns content classification and reputation information on the queried URL.
+- input : A URL for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
->>_lookup virustotal get_url_report $Url
+>>_lookup webroot get_url_info $Url
 ```
 ###### Sample Output 
-![url_report](https://user-images.githubusercontent.com/37173181/38144498-8e1ade20-3462-11e8-8e80-a56457a149dc.jpg)
+![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
 
 The Lookup call returns output in the following structure for available data
