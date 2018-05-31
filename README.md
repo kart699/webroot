@@ -2,16 +2,27 @@
  https://www.webroot.com/us/en/business/threat-intelligence
 
 ### Overview
-VirusTotal inspects items with over 70 antivirus scanners and URL/domain blacklisting services, in addition to a myriad of tools to extract signals from the studied content
-##### Real-time updates
-Malware signatures are updated frequently by VirusTotal as they are distributed by antivirus companies, this ensures that our service uses the latest signature sets.
-Website scanning is done in some cases by querying vendor databases that have been shared with VirusTotal and stored on our premises and
-in other cases by API queries to an antivirus company's solution. As such, as soon as a given contributor blacklists a URL it is immediately reflected in user-facing verdicts.
-##### Detailed results
-VirusTotal not only tells you whether a given antivirus solution detected a submitted file as malicious, but also displays each engine's detection label (e.g., I-Worm.Allaple.gen).
-The same is true for URL scanners, most of which will discriminate between malware sites, phishing sites, suspicious sites, etc. 
-Some engines will provide additional information, stating explicitly whether a given URL belongs to a particular botnet, which brand is targeted by a given phishing site, and so on.
- 
+
+Webroot is the largest privately held internet security organisation based in the United States operating globally across North America, Europe and the Asia Pacific region.   
+Webroots BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
+The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats.     
+This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors.  
+The service also provides information such as historical and geolocation data to help security admins make better threat decisions.   
+Webroot® BrightCloud Security Services include the following catagories
+##### Web Classifications
+Provides content classification for billions of webpages to keep users safe from online threats
+
+##### Web Reputation
+Forecasts the security risk of visiting a website and enables administrators to finely tune security settings 
+
+##### IP Reputation
+Publish dynamic intelligence of high-risk IP addresses and insight into inbound and outbound communications
+
+##### File Reputation
+Provides dynamic file reputation intelligence of known malicious and whitelisted files to stop the distribution of malware
+
+
+
 ##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
 ##### Retrieve URL scan reports  
