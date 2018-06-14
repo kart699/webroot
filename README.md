@@ -99,7 +99,7 @@ _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfo $Url
 ```
 
-##### Sample Output 
+##### Sample walkthrough video for URL WHOIS 
 [URL WHOIS](https://drive.google.com/file/d/11EvQPXkZAR1Xe39C0UWWwpvMSPHZZiJX/view?usp=sharing)
 
 The Lookup call returns output in the following structure for available data  
