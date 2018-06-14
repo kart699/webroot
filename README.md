@@ -143,6 +143,21 @@ The Lookup call returns output in the following structure for available data
 
  | Fields        | Description  |
 |:------------- |:-------------|
+| $BCTIAdministrativeContactCity | Administration contact city |
+| $BCTIAdministrativeContactCountry | Administration contact country |
+| $BCTIAdministrativeContactEmail | Administration contact email |
+| $BCTIAdministrativeContactFax | Administration contact fax |
+| $BCTIAdministrativeContactFaxext | Administration contact fax extention |
+| $BCTIAdministrativeContactName |  Administration contact name|
+| $BCTIAdministrativeContactOrganization | Administration contact organization |
+| $BCTIAdministrativeContactPostalCode | Administration contact postal code |
+| $BCTIAdministrativeContactState | Administration contact street 1 |
+| $BCTIAdministrativeContactStreet1 | Administration contact street 2 |
+| $BCTIAdministrativeContactStreet2 | |
+| $BCTIAdministrativeContactStreet3 | |
+| $BCTIAdministrativeContactStreet4 | |
+| $BCTIAdministrativeContactTelephone | |
+| $BCTIAdministrativeContactTelephone | |
 | $BCTIAuditUpdateDate | Date of audit update date |
 | $BCTIContactEmail | Email address of contact |
 | $BCTICreatedDate | Created date of the domain associated with the URL  |
@@ -157,11 +172,16 @@ The Lookup call returns output in the following structure for available data
 | $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
 | $BCTIRegistrantState  | State of the registrant   |
 | $BCTIRegistrantStreet  | Street of the registrant  |
+| $BCTIRegistrantFax |  |
+| $BCTIRegistrantFaxext |  |
+| $BCTIRegistrantPostalCode |  |
+| $BCTIWhoIsServer | |
 | $BCTIRegistrantTelephone  | Telephone of the registrant  |
 | $BCTIRegistrarName  | Name of the Registrar  |
 | $BCTIStandardRegCreatedDate  | Standard registry created date |
 | $BCTIStandardRegExpiresDate | Standard registry expiry date  |
 | $BCTIStandardRegUpdatedDate | Standard registry updated date  |
+| $BCTIstatus | |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 
