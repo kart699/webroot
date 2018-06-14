@@ -99,51 +99,70 @@ _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfo $Url
 ```
 
-##### Sample walkthrough video for URL WHOIS 
+##### Sample walk-through video link for URL WHOIS 
 [URL WHOIS](https://drive.google.com/file/d/11EvQPXkZAR1Xe39C0UWWwpvMSPHZZiJX/view?usp=sharing)
 
 The Lookup call returns output in the following structure for available data  
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $VTOwner      | Autonomous system owner detail |
-| $VTURL | List of latest url hosted on the queried ip address |
-| $VTPassiveDNSReplication | Domain resolved to the queried ip address |
-| $VTASN | Autonomous system number |
-| $VTCN | Country |
-| $VTCommunicatingSamples | SHA256 of files that communicate with the queried ip address  |
-| $VTDownloadedSamples  | SHA256 of files that downloaded from the queried ip address |
-| $VTResponseCode | If the queried IP address is present in VirusTotal database it returns 1 ,if absent returns 0 and if the submitted IP address is invalid -1. |
+| $BCTIAuditUpdateDate | Date of audit update date |
+| $BCTIContactEmail | Email address of contact |
+| $BCTICreatedDate | Created date of the domain associated with the URL  |
+| $BCTIDomainName | Domain Name |
+| $BCTIExpiresDate | Expiry date of the domain associated with the URL |
+| $BCTINameServers | Associated name servers details   |
+| $BCTIRegistrantCity  | City of the registrant |
+| $BCTIRegistrantCountry | Country of the registrant |
+| $BCTIRegistrantEmail  | Email contact of registrant  |
+| $BCTIRegistrantName  |  Name of the registrant  |
+| $BCTIRegistrantOrganization  | Organization of the registrant  |
+| $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
+| $BCTIRegistrantState  | State of the registrant   |
+| $BCTIRegistrantStreet  | Street of the registrant  |
+| $BCTIRegistrantTelephone  | Telephone of the registrant  |
+| $BCTIRegistrarName  | Name of the Registrar  |
+| $BCTIStandardRegCreatedDate  | Standard registry created date |
+| $BCTIStandardRegExpiresDate | Standard registry expiry date  |
+| $BCTIStandardRegUpdatedDate | Standard registry updated date  |
+| $BCTIAPIStatus | Returns the API status code of the request made |
 
-
-
-#####  Retrieve file  scan  reports by MD5/SHA-1/SHA-256 hash
+#####  Retrieve full WHOIS info on the URL.
   
-File report of MD5/SHA-1/SHA-256 hash for which you want to retrieve the most recent antivirus report
+This endpoint returns full WHOIS information on the URL
 - input : a md5/sha1/sha256 hash will retrieve the most recent report on a given sample
 ```
-_fetch $Filehash from threatsample limit 1
->>_lookup virustotal get_filehash_report $Filehash
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_whoisinfofull $Url
 ```
-##### Sample Output 
-![filehash](https://user-images.githubusercontent.com/37173181/38144583-f6cb7dc6-3462-11e8-9706-ae4c3c5b063a.jpg)
+##### Sample walk-through video link for full URL WHOIS 
+[URL WHOIS FULL](https://drive.google.com/file/d/1Db5aht1vC3KyjnNr4F38HI1dCgFg33t_/view?usp=sharing)
 
 
 The Lookup call returns output in the following structure for available data
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $VTmd5      | Corresponding MD5 hash of quried hash present in VirusTotal DB |
-| $VTsha1 | Corresponding SHA-1 hash of quried hash present in VirusTotal DB |
-| $VTsha256 | Corresponding SHA-256 hash of quried hash present in VirusTotal DB |
-| $VTPermalink | Permalink of report stored in VirusTotal |
-| $VTPositive | List of scans returning positive detection |
-| $VTNegative | List of scans returning negative detection |
-| $VTPositives | Count of positive detection |
-| $VTResponseCode | If the queried item is present in VirusTotal database it returns 1 ,if absent returns 0 and if the requested item is still queued for analysis it will be -2 |
-| $VTTotal | Count of positive and negative detections |
-| $VTSystemTstamp | Scan Date |
-
+| $BCTIAuditUpdateDate | Date of audit update date |
+| $BCTIContactEmail | Email address of contact |
+| $BCTICreatedDate | Created date of the domain associated with the URL  |
+| $BCTIDomainName | Domain Name |
+| $BCTIExpiresDate | Expiry date of the domain associated with the URL |
+| $BCTINameServers | Associated name servers details   |
+| $BCTIRegistrantCity  | City of the registrant |
+| $BCTIRegistrantCountry | Country of the registrant |
+| $BCTIRegistrantEmail  | Email contact of registrant  |
+| $BCTIRegistrantName  |  Name of the registrant  |
+| $BCTIRegistrantOrganization  | Organization of the registrant  |
+| $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
+| $BCTIRegistrantState  | State of the registrant   |
+| $BCTIRegistrantStreet  | Street of the registrant  |
+| $BCTIRegistrantTelephone  | Telephone of the registrant  |
+| $BCTIRegistrarName  | Name of the Registrar  |
+| $BCTIStandardRegCreatedDate  | Standard registry created date |
+| $BCTIStandardRegExpiresDate | Standard registry expiry date  |
+| $BCTIStandardRegUpdatedDate | Standard registry updated date  |
+| $BCTIAPIStatus | Returns the API status code of the request made |
 
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
