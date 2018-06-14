@@ -65,7 +65,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTICategoryconfidence | Confidence score the category assigned to this URL |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
-#####  Retrieve reputation information of URLs:
+#####  Retrieve reputation information of URL:
 This endpoint returns extended reputation information of URLs, for example: country, popularity,age, etc.
 - input : A URL for which you want to retrieve information.
 
@@ -88,17 +88,19 @@ The Lookup call returns output in the following structure for available data
 | $BCTIThreatHistory | The number of times that this site has had a security event in the past 12 months It is at least 1 for current security-compromised sites. |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
-##### Retrieve IP address reports
 
-The IP address for which you want to retrieve the report
-- input :  
+##### Retrieve WHOIS information on the URL
+
+This endpoint returns abbreviated WHOIS information on the URL
+- input : A URL for which you want to retrieve information.
 
 ```
-_fetch $SrcIP from threatsample limit 1
->>_lookup virustotal get_ip_report $SrcIP
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_whoisinfo $Url
 ```
+
 ##### Sample Output 
-![ip_report](https://user-images.githubusercontent.com/37173181/38144512-a3ed30c2-3462-11e8-9e00-cf11cfaddb34.jpg)
+
 
 The Lookup call returns output in the following structure for available data  
 
