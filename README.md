@@ -23,16 +23,6 @@ Provides dynamic file reputation intelligence of known malicious and whitelisted
 
 ##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
-##### Retrieve URL information  
-This endpoint returns content classification and reputation information on the queried URL.
-- input : A URL for which you want to retrieve information.        
-```
-_fetch $Url from threatsample limit 1
->>_lookup webroot get_url_info $Url
-```
-###### Sample Output 
-![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
-
 ### Note 
 Reputation score classification for URL
 
@@ -53,6 +43,16 @@ Popularity classification for URL
 | 3  | Site ranking is in top 10 million sites |
 | 4  | Site ranking lower than top 10 million sites |
 | 5  | TUnranked site |
+
+##### Retrieve URL information  
+This endpoint returns content classification and reputation information on the queried URL.
+- input : A URL for which you want to retrieve information.        
+```
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_info $Url
+```
+###### Sample Output 
+![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
 The Lookup call returns output in the following structure for available data
 
