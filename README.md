@@ -34,7 +34,7 @@ _fetch $Url from threatsample limit 1
 ![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
 ### Note 
-Reputation score classification 
+Reputation score classification for URL
 
 |Score Range       | Description  |
 |:------------- |:-------------|
@@ -44,12 +44,22 @@ Reputation score classification
 | 61 – 80 | Low Risk |
 | 81 – 100 | Trustworthy |
 
+Popularity classification for URL
+
+|Popularity        | Description  |
+|:------------- |:-------------|
+| 1  | Site ranking is in top 100,000 sites |
+| 2  | Site ranking is in top 1 million sites |
+| 3  | Site ranking is in top 10 million sites |
+| 4  | Site ranking lower than top 10 million sites |
+| 5  | TUnranked site |
+
 The Lookup call returns output in the following structure for available data
 
   | Fields        | Description  |
 |:------------- |:-------------|
 | $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
-| $BCTIReputation      | Reputation score for the queried URL |
+| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
 | $BCTILCP | Least common part |
 | $BCTICategoryId | A positive integer number representing the category Id |
 | $BCTICategoryconfidence | Confidence score the category assigned to this URL |
@@ -73,14 +83,9 @@ The Lookup call returns output in the following structure for available data
 |:------------- |:-------------|
 | $BCTIAge      | Number of months that BrightCloud has known about this authority. |
 | $BCTICountry | Two letter country ID |
-| $BCTIPopularity |1. Site ranking is in top 100,000 sites
-2. Site ranking is in top 1 million sites
-3. Site ranking is in top 10 million sites
-4. Site ranking lower than top 10 million sites
-5. Unranked site |
-| $BCTIReputation | List of domains that lie on the same DNS hierarchical level |
-| $BCTIThreatHistory | The number of times that this site has had a security event in the past 12 months.
- It is at least 1 for current security-compromised sites. |
+| $BCTIPopularity | Popularity category of the URL (refer to notes section for details on popularity classification)  |
+| $BCTIReputation | Reputation score for the queried URL (refer to notes section for details on score classification) |
+| $BCTIThreatHistory | The number of times that this site has had a security event in the past 12 months It is at least 1 for current security-compromised sites. |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 ##### Retrieve IP address reports
