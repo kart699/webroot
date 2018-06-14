@@ -33,32 +33,27 @@ _fetch $Url from threatsample limit 1
 ###### Sample Output 
 ![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
+### Note 
+Reputation score classification 
+
+|Score Range       | Description  |
+|:------------- |:-------------|
+| 1 - 20 | High Risk |
+| 21 – 40 | Suspicious |
+| 41 – 60 | Moderate Risk |
+| 61 – 80 | Low Risk |
+| 81 – 100 | Trustworthy |
 
 The Lookup call returns output in the following structure for available data
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $VTURL      | URL being queried |
-| $VTPermalink      | Permalink of report stored in VirusTotal |
-| $VTPositive | List of scans returning positive detection |
-| $VTNegative | List of scans returning negative detection |
-| $VTPositives | Count of positive detection |
-| $VTResponseCode | If the queried url is present in VirusTotal database it returns 1 ,if absent returns 0 and if the requested item is still queued for analysis it will be -2 |
-| $VTTotal | Count of positive and negative detections |
-| $VTSystemTstamp | Scan Date |
-
- If the queried url is not present in VirusTotal Data base the lookup call returns the following
-
- | Fields        | Description  |
-|:------------- |:-------------|
-| $VTURL      | URL being queried |
-| $VTPermalink      | Permalink of report stored in VirusTotal |
-| $VTResponseCode | If the queried url is absent in VirusTotal database it returns 0  and if the requested item is still queued for analysis it will be -2 |
-| $VTTotal | Count of positive and negative detections |
-| $VTSystemTstamp | Scan Date |
-| $VTMessage | Verbose message of url being successfully queued up for scan |
-| $VTScanID | Provides a scan id which can be later used for quering the report |
-
+| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
+| $BCTIReputation      | Reputation score for the queried URL |
+| $BCTILCP | Least common part |
+| $BCTICategoryId | A positive integer number representing the category Id |
+| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
+| $BCTIAPIStatus | Returns the API status code of the request made |
 
 #####  Retrieve Domain reports
 The domain for which you want to retrieve the report
