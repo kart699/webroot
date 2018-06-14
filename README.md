@@ -24,7 +24,7 @@ Provides dynamic file reputation intelligence of known malicious and whitelisted
 ##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
 ##### Retrieve URL information  
-Returns content classification and reputation information on the queried URL.
+This endpoint returns content classification and reputation information on the queried URL.
 - input : A URL for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
@@ -38,7 +38,7 @@ Reputation score classification
 
 |Score Range       | Description  |
 |:------------- |:-------------|
-| 1 - 20 | High Risk |
+|  1 - 20 | High Risk |
 | 21 – 40 | Suspicious |
 | 41 – 60 | Moderate Risk |
 | 61 – 80 | Low Risk |
@@ -55,41 +55,38 @@ The Lookup call returns output in the following structure for available data
 | $BCTICategoryconfidence | Confidence score the category assigned to this URL |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
-#####  Retrieve Domain reports
-The domain for which you want to retrieve the report
-- input : a domain name.
+#####  Retrieve reputation information of URLs:
+This endpoint returns extended reputation information of URLs, for example: country, popularity,age, etc.
+- input : A URL for which you want to retrieve information.
 
 ```
-_fetch $Domain from threatsample limit 1
->>_lookup virustotal get_domain_report $Domain
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_repinfo $Url
 ```
 
 ##### Sample Output 
-  ![domain_report](https://user-images.githubusercontent.com/37173181/38144398-2936c2ee-3462-11e8-922b-204e30abdbfd.jpg)
-
+![get_urlrepinfo](https://user-images.githubusercontent.com/37173181/41393970-bed98e50-6fc5-11e8-9cde-651451da9b41.jpg)
 
 The Lookup call returns output in the following structure for available data
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $VTURL      | List of URL processed by VirusTotal and hosted on the domain |
-| $VTCategories | Domain category assigned by VirusTotal |
-| $VTWebsenseThreatSeekercategory |Domain category assigned by Websense Threat Seeker |
-| $VTDomainList | List of domains that lie on the same DNS hierarchical level |
-| $VTSubDomainList | List of sub-domains |
-| $VTSiteClass | Site-Classification assigned by VirusTotal |
-| $VTWebutationVerdict  | Webutation Domain verdict |
-| $VTWebutationSafetyScore | Webutationx Domain score  |
-| $VTForcepointThreatSeekerCategory | Domain category assigned by Forcepoint Threat Seeker |
-| $VTPassiveDNSReplication | The queried domain has been seen to resolve the list of ip address |
-| $VTResponseCode | If the queried domain is present in VirusTotal database it returns 1 ,if absent returns 0 and if the requested item is still queued for analysis it will be -2 |
-| $VTWHOIS | Registered domain owners and meta-data from WHOIS |   
-
+| $BCTIAge      | Number of months that BrightCloud has known about this authority. |
+| $BCTICountry | Two letter country ID |
+| $BCTIPopularity |1. Site ranking is in top 100,000 sites
+2. Site ranking is in top 1 million sites
+3. Site ranking is in top 10 million sites
+4. Site ranking lower than top 10 million sites
+5. Unranked site |
+| $BCTIReputation | List of domains that lie on the same DNS hierarchical level |
+| $BCTIThreatHistory | The number of times that this site has had a security event in the past 12 months.
+ It is at least 1 for current security-compromised sites. |
+| $BCTIAPIStatus | Returns the API status code of the request made |
 
 ##### Retrieve IP address reports
 
 The IP address for which you want to retrieve the report
-- input : a valid IPv4 address in dotted quad notation, for the time being only IPv4 addresses are supported.
+- input :  
 
 ```
 _fetch $SrcIP from threatsample limit 1
