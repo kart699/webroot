@@ -151,13 +151,12 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAdministrativeContactName |  Administration contact name|
 | $BCTIAdministrativeContactOrganization | Administration contact organization |
 | $BCTIAdministrativeContactPostalCode | Administration contact postal code |
-| $BCTIAdministrativeContactState | Administration contact street 1 |
-| $BCTIAdministrativeContactStreet1 | Administration contact street 2 |
-| $BCTIAdministrativeContactStreet2 | |
-| $BCTIAdministrativeContactStreet3 | |
-| $BCTIAdministrativeContactStreet4 | |
-| $BCTIAdministrativeContactTelephone | |
-| $BCTIAdministrativeContactTelephone | |
+| $BCTIAdministrativeContactState | Administration contact state |
+| $BCTIAdministrativeContactStreet1 | Administration contact street 1 |
+| $BCTIAdministrativeContactStreet2 |  Administration contact street 2 |
+| $BCTIAdministrativeContactStreet3 |  Administration contact street 3 |
+| $BCTIAdministrativeContactStreet4 |  Administration contact street 4 |
+| $BCTIAdministrativeContactTelephone |  Administration contact telephone |
 | $BCTIAuditUpdateDate | Date of audit update date |
 | $BCTIContactEmail | Email address of contact |
 | $BCTICreatedDate | Created date of the domain associated with the URL  |
@@ -172,16 +171,16 @@ The Lookup call returns output in the following structure for available data
 | $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
 | $BCTIRegistrantState  | State of the registrant   |
 | $BCTIRegistrantStreet  | Street of the registrant  |
-| $BCTIRegistrantFax |  |
-| $BCTIRegistrantFaxext |  |
-| $BCTIRegistrantPostalCode |  |
-| $BCTIWhoIsServer | |
 | $BCTIRegistrantTelephone  | Telephone of the registrant  |
+| $BCTIRegistrantFax | Fax details of registrant |
+| $BCTIRegistrantFaxext | Fax extention of registrant |
+| $BCTIRegistrantPostalCode | Postal code of registrant |
+| $BCTIWhoIsServer | WHOIS Server name |
 | $BCTIRegistrarName  | Name of the Registrar  |
 | $BCTIStandardRegCreatedDate  | Standard registry created date |
 | $BCTIStandardRegExpiresDate | Standard registry expiry date  |
 | $BCTIStandardRegUpdatedDate | Standard registry updated date  |
-| $BCTIstatus | |
+| $BCTIstatus | status of|
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 
