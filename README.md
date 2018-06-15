@@ -42,7 +42,7 @@ Popularity classification for URL
 | 2  | Site ranking is in top 1 million sites |
 | 3  | Site ranking is in top 10 million sites |
 | 4  | Site ranking lower than top 10 million sites |
-| 5  | TUnranked site |
+| 5  | Unranked site |
 
 ##### Retrieve URL information  
 This endpoint returns content classification and reputation information on the queried URL.
@@ -157,30 +157,36 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAdministrativeContactStreet3 |  Administration contact street 3 |
 | $BCTIAdministrativeContactStreet4 |  Administration contact street 4 |
 | $BCTIAdministrativeContactTelephone |  Administration contact telephone |
-| $BCTIAuditUpdateDate | Date of audit update date |
+| $BCTIAdministrativeContactTelephoneExt | Administration contact telephone extention |
+| $BCTIAuditUpdateDate | Date of audit update |
 | $BCTIContactEmail | Email address of contact |
 | $BCTICreatedDate | Created date of the domain associated with the URL  |
-| $BCTIDomainName | Domain Name |
+| $BCTIUpdatedDate | Update date of the domain associated with the URL |
 | $BCTIExpiresDate | Expiry date of the domain associated with the URL |
+| $BCTIDomainName | Domain Name |
 | $BCTINameServers | Associated name servers details   |
 | $BCTIRegistrantCity  | City of the registrant |
 | $BCTIRegistrantCountry | Country of the registrant |
 | $BCTIRegistrantEmail  | Email contact of registrant  |
+| $BCTIRegistrantFax | Fax details of registrant |
+| $BCTIRegistrantFaxext | Fax extention of registrant |
 | $BCTIRegistrantName  |  Name of the registrant  |
 | $BCTIRegistrantOrganization  | Organization of the registrant  |
 | $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
 | $BCTIRegistrantState  | State of the registrant   |
-| $BCTIRegistrantStreet  | Street of the registrant  |
+| $BCTIRegistrantStreet1  | Street address of the registrant  |
+| $BCTIRegistrantStreet2  | Street address of the registrant  |
+| $BCTIRegistrantStreet3  | Street address of the registrant  |
+| $BCTIRegistrantStreet4  | Street address of the registrant  |
 | $BCTIRegistrantTelephone  | Telephone of the registrant  |
-| $BCTIRegistrantFax | Fax details of registrant |
-| $BCTIRegistrantFaxext | Fax extention of registrant |
+| $BCTIRegistrantTelephoneext  | Telephone extention of the registrant   |
 | $BCTIRegistrantPostalCode | Postal code of registrant |
 | $BCTIWhoIsServer | WHOIS Server name |
 | $BCTIRegistrarName  | Name of the Registrar  |
 | $BCTIStandardRegCreatedDate  | Standard registry created date |
 | $BCTIStandardRegExpiresDate | Standard registry expiry date  |
 | $BCTIStandardRegUpdatedDate | Standard registry updated date  |
-| $BCTIstatus | status of|
+| $BCTIstatus | Status of domain associated with domain |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 
