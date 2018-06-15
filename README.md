@@ -189,6 +189,26 @@ The Lookup call returns output in the following structure for available data
 | $BCTIstatus | Status of domain associated with domain |
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
+##### Retrieve the phishing score on the object (URL or IP). 
+This endpoint is a synchronous call soserver waits for all URIs to be processed before response to the request.
+- input : A URL or IP for which you want to retrieve information.        
+```
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_info $Url
+```
+###### Sample Output 
+![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
+| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
+| $BCTILCP | Least common part |
+| $BCTICategoryId | A positive integer number representing the category Id |
+| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
+| $BCTIAPIStatus | Returns the API status code of the request made |
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
