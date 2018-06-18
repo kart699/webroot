@@ -191,24 +191,45 @@ The Lookup call returns output in the following structure for available data
 
 ##### Retrieve the phishing score on the object (URL or IP). 
 This endpoint is a synchronous call soserver waits for all URIs to be processed before response to the request.
-- input : A URL or IP for which you want to retrieve information.        
+- input : An URL or IP for which you want to retrieve information.        
 ```
-_fetch $Url from threatsample limit 1
->>_lookup webroot get_url_info $Url
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_phishingscore $SrcIP
 ```
 ###### Sample Output 
-![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
+![get_phishingscore](https://user-images.githubusercontent.com/37173181/41521924-b0e67cb6-72f1-11e8-8da4-cf85a5c188da.jpg)
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIPhishScore   | Threat level returned from BCTI ranges from 1 to 100. The higher the score, the higher probability that the url is a phishing site. |
+| $BCTIPhishTarget  | Target of the phishing |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+
+##### Submit phishquery on the object (URL or IP). 
+This endpoint is used for sending URIs (URL or IP) where you call back later to get result.
+- input : An URL or IP for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot submit_phishquery $SrcIP
+>>_store in_disk wbticket stack_replace
+```
+###### Sample Output 
+
+![get_submitphishquerywithstore](https://user-images.githubusercontent.com/37173181/41522871-8d827e6a-72f5-11e8-8610-1fa24f65d851.jpg)
 
 The Lookup call returns output in the following structure for available data
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
-| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
-| $BCTILCP | Least common part |
-| $BCTICategoryId | A positive integer number representing the category Id |
-| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIPhishRequestTicket  | Returns a phishresponse ticket which can be used to query later  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+##### Note 
+The returned $BCTIPhishRequestTicket can be stored in the DNIF console using the store directive .  
+Which can later be used to retrive response with the  get_phishqueryresponse endpoint
+            
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
