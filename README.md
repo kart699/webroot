@@ -261,18 +261,24 @@ _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_info $Url
 ```
 ###### Sample Output 
-![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
+![get_ip_info](https://user-images.githubusercontent.com/37173181/41530733-c4780f48-730e-11e8-90aa-31c1990e039a.jpg)
 
 The Lookup call returns output in the following structure for available data
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
-| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
-| $BCTILCP | Least common part |
-| $BCTICategoryId | A positive integer number representing the category Id |
-| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIIPInt    | Integer representation of the requested IP Address. |
+| $BCTIIPStatus | Binary value of the Threat IP status.Possible values are (1 and 2), 1 means in Threat IP list ,0 means not in Threat IP list |
+| $BCTICurrentReleaseDate | Represents the exit date that the Threat IP is removed from the Threat IP list. This field is empty if the IP Address is no longer in the Threat IP list |
+| $BCTIDomain | If IP Address has a corresponding unique domain name in Webroot Master DB, the domain name is shown here empty if not in Master DB) |
+| $BCTIDomainAge | The age of the unique domain associated with the IP Address in Webroot Master DB since the discovery of the domain by Webroot (empty if not in Master DB) |
+| $BCTIFirstReleaseDate | Represents the date associated with the first time that an IP Address is released from the   Threat IP list. |
+| $BCTILastReleaseDate  | Represents the date associated with the last time that an IP Address is released from the
+Threat IP list.  |
+| $BCTIThreatCount  | The number of times the IP address has appeared on Threat IP list.  |
+| $BCTIThreatMask  | Information on specific threat(s) that associated with requested IP. Bit number corresponds with the Threat Mask category.  |
+| $BCTIReputation  | Reputation score from 1-100 of this IP.  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
 
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
