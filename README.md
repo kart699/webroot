@@ -280,6 +280,33 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 
+##### Retrieve IP geo information  
+This endpoint returns geo information on the queried IP address.
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ip_geoinfo $SrcIP
+```
+###### ##### Sample walk-through video link for IP geo information
+
+[Get IP GEO INFO](https://drive.google.com/file/d/1KpBZxloQ3OT29lzb3H3TwJpuhATDFX8y/view?usp=sharing)
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIASN    |  |
+| $BCTICarrier | |
+| $BCTICity | |
+| $BCTICountry | |
+| $BCTILatitude |  |
+| $BCTILongitude | |
+| $BCTIOrganization  |   |
+| $BCTIRegion  |   |
+| $BCTISecondLevelDomain  |   |
+| $BCTIState  |   |
+| $BCTITopLevelDomain |  |
+
+
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
 
