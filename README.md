@@ -287,24 +287,24 @@ This endpoint returns geo information on the queried IP address.
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_ip_geoinfo $SrcIP
 ```
-###### ##### Sample walk-through video link for IP geo information
+###### Sample walk-through video link for IP geo information
 
 [Get IP GEO INFO](https://drive.google.com/file/d/1KpBZxloQ3OT29lzb3H3TwJpuhATDFX8y/view?usp=sharing)
 The Lookup call returns output in the following structure for available data
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIASN    |  |
-| $BCTICarrier | |
-| $BCTICity | |
-| $BCTICountry | |
-| $BCTILatitude |  |
-| $BCTILongitude | |
-| $BCTIOrganization  |   |
-| $BCTIRegion  |   |
-| $BCTISecondLevelDomain  |   |
-| $BCTIState  |   |
-| $BCTITopLevelDomain |  |
+| $BCTIASN    | Autonomous system number where this ip belongs to  |
+| $BCTICarrier | Carrier where this ip belongs to |
+| $BCTICity | City name from geo file |
+| $BCTICountry | Country name from geo file |
+| $BCTIRegion  | Region name from geo file  |
+| $BCTIState  | State name from geo file  |
+| $BCTILatitude | Latitude of this ip |
+| $BCTILongitude | Longitude of this ip |
+| $BCTIOrganization  | Organization where this ip belongs to  |
+| $BCTISecondLevelDomain  | Second-level domain of this ip  |
+| $BCTITopLevelDomain | Top-level domain of this ip |
 
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
