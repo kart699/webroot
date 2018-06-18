@@ -273,8 +273,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTIDomain | If IP Address has a corresponding unique domain name in Webroot Master DB, the domain name is shown here empty if not in Master DB) |
 | $BCTIDomainAge | The age of the unique domain associated with the IP Address in Webroot Master DB since the discovery of the domain by Webroot (empty if not in Master DB) |
 | $BCTIFirstReleaseDate | Represents the date associated with the first time that an IP Address is released from the   Threat IP list. |
-| $BCTILastReleaseDate  | Represents the date associated with the last time that an IP Address is released from the
-Threat IP list.  |
+| $BCTILastReleaseDate  | Represents the date associated with the last time that an IP Address is released from the    Threat IP list.  |
 | $BCTIThreatCount  | The number of times the IP address has appeared on Threat IP list.  |
 | $BCTIThreatMask  | Information on specific threat(s) that associated with requested IP. Bit number corresponds with the Threat Mask category.  |
 | $BCTIReputation  | Reputation score from 1-100 of this IP.  |
