@@ -305,7 +305,81 @@ The Lookup call returns output in the following structure for available data
 | $BCTIOrganization  | Organization where this ip belongs to  |
 | $BCTISecondLevelDomain  | Second-level domain of this ip  |
 | $BCTITopLevelDomain | Top-level domain of this ip |
+| $BCTIAPIStatus| Returns the API status code of the request made |
 
+##### Retrieve IP threat history   
+This endpoint returns threat history of the requested IP.
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ip_threathistory $SrcIP
+```
+###### Sample walk-through video link for IP threat history
+[GET IP THREATHISTORY](https://drive.google.com/file/d/1DoSttzPMvL2I7rpMSRWc3ZLPNz1Ll9tR/view?usp=sharing)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIThreatTypes    | Autonomous system number where this ip belongs to  |
+| $BCTIThreatCount | Carrier where this ip belongs to |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+The report also includes variable fields depending on the positive detections. For example, an ip identified as threat type botnets  would have the following fields
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIThreatTypeBotnets | a list of timestamp when the IP was seen as a botnet  |
+
+
+##### Retrieve IP reputation history   
+This endpoint returns This call returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ip_rephistory $SrcIP
+```
+###### Sample walk-through video link for IP reputation history
+[GET IP REPUTATION HISTORY ](https://drive.google.com/file/d/1sV8Vhqe0AZhBkn26W7QU1nYeSe_aaovy/view?usp=sharing)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIAverageReputation   | Decimal number representing the average reputation of the IP  |
+| $BCTIHistoryCount | Number representing the number of time the IP reputation is recorded. |
+| $BCTIMaxReputation | Number representing the highest recorded reputation of the IP |
+| $BCTIMinReputation | Number representing the lowest recorded reputation of the IP |
+| $BCTIReputationHighRisk | List of time stamp when IP had a high risk reputation  |
+| $BCTIReputationSuspicious | List of time stamp when IP had a suspicious reputation  |
+| $BCTIReputationTrustworthy | List of time stamp when IP had a Trustworthy reputation |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+
+##### Retrieve IP reputation history   
+This endpoint returns This call returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ip_rephistory $SrcIP
+```
+###### Sample walk-through video link for IP reputation history
+[GET IP REPUTATION HISTORY ](https://drive.google.com/file/d/1sV8Vhqe0AZhBkn26W7QU1nYeSe_aaovy/view?usp=sharing)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIAverageReputation   | Decimal number representing the average reputation of the IP  |
+| $BCTIHistoryCount | Number representing the number of time the IP reputation is recorded. |
+| $BCTIMaxReputation | Number representing the highest recorded reputation of the IP |
+| $BCTIMinReputation | Number representing the lowest recorded reputation of the IP |
+| $BCTIReputationHighRisk | List of time stamp when IP had a high risk reputation  |
+| $BCTIReputationSuspicious | List of time stamp when IP had a suspicious reputation  |
+| $BCTIReputationTrustworthy | List of time stamp when IP had a Trustworthy reputation |
+| $BCTIAPIStatus| Returns the API status code of the request made |
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
