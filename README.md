@@ -46,7 +46,7 @@ Popularity classification for URL
 
 ##### Retrieve URL information  
 This endpoint returns content classification and reputation information on the queried URL.
-- input : A URL for which you want to retrieve information.        
+- input : An URL for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_info $Url
@@ -67,7 +67,7 @@ The Lookup call returns output in the following structure for available data
 
 #####  Retrieve reputation information of URL:
 This endpoint returns extended reputation information of URLs, for example: country, popularity,age, etc.
-- input : A URL for which you want to retrieve information.
+- input : An URL for which you want to retrieve information.
 
 ```
 _fetch $Url from threatsample limit 1
@@ -92,7 +92,7 @@ The Lookup call returns output in the following structure for available data
 ##### Retrieve WHOIS information on the URL
 
 This endpoint returns abbreviated WHOIS information on the URL
-- input : A URL for which you want to retrieve information.
+- input : An URL for which you want to retrieve information.
 
 ```
 _fetch $Url from threatsample limit 1
@@ -130,7 +130,7 @@ The Lookup call returns output in the following structure for available data
 #####  Retrieve full WHOIS info on the URL.
   
 This endpoint returns full WHOIS information on the URL
-- input : a md5/sha1/sha256 hash will retrieve the most recent report on a given sample
+- input : A md5/sha1/sha256 hash will retrieve the most recent report on a given sample
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfofull $Url
@@ -228,8 +228,52 @@ The Lookup call returns output in the following structure for available data
 
 ##### Note 
 The returned $BCTIPhishRequestTicket can be stored in the DNIF console using the store directive .  
-Which can later be used to retrive response with the  get_phishqueryresponse endpoint
+Which can later be used to retrive response with the  get_phishqueryresponse endpoint.
+
             
+##### Retrieve the phish query response for the ticket. 
+This endpoint uses the phishrequestticket to request result.
+- input : String of phish request ticket.        
+```
+_retrieve wbticket 
+>>_lookup webroot get_phishqueryresponse $BCTIPhishRequestTicket
+```
+###### Sample Output 
+
+![get_phishqueryresponse](https://user-images.githubusercontent.com/37173181/41523643-6421825c-72f8-11e8-9c9b-b9d122ddca45.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIPhishScore   | Threat level returned from BCTI ranges from 1 to 100. The higher the score, the higher probability that the url is a phishing site. |
+| $BCTIPhishTarget  | Target of the phishing |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+##### Note 
+using the stored ticket from the submit phishquery endpoint we retrieve the information from this endpoint
+
+##### Retrieve IP information  
+This endpoint returns content classification and reputation information on the queried IP address.
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_url_info $Url
+```
+###### Sample Output 
+![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
+| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
+| $BCTILCP | Least common part |
+| $BCTICategoryId | A positive integer number representing the category Id |
+| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
+| $BCTIAPIStatus | Returns the API status code of the request made |
+
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
