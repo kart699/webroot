@@ -589,6 +589,71 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 
+##### Retrieve IP threatinsight  
+This endpoint returns a list of incidents which caused an IP to be flagged as malicious. The response contains the earliest time the incidents were observed, the length of the time the incidents were ongoing, whether the series of incidents was severe enough for the IP to be determined as threat, the specific type of threat(s) detected, and any additional, type-dependent details available for the IP
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ipthreatinsight $SrcIP
+```
+
+###### Sample Output
+![GET IP THREATINSIGHT](https://user-images.githubusercontent.com/37173181/41598480-e534b7c4-73ed-11e8-9066-2e03f8951414.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIThreatType | Threat found on the queried IP |
+| $BCTIConvictedTime | List of timestamp when file was observed as convicted  |
+| $BCTIHostType  | IP address Hosting example ZuesBot Cnc   |
+| $BCTIHostedURLs  | List of hosting url  |
+| $BCTIIPint  | Integer representation of the requested IP Address.  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+
+##### Retrieve URL threatinsight  
+Returns a list of files (identified by md5s) found hosted on URLs within a specified domain. The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_urlthreatinsight $Url
+```
+###### Sample Output
+
+![urlthreatinsight](https://user-images.githubusercontent.com/37173181/41605632-7546588e-73ff-11e8-88de-4ac122c39d29.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIMd5HashDetTypeG | List of hash detected  as good  hosted on queried URL  |
+| $BCTIMd5HashDetTypeB | List of hash detected as bad hosted on queried URL  |
+| $BCTIMd5HashDetTypeNU | List of hash detected as not determined hosted on queried URL  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+
+##### Retrieve URL threatinsight for md5
+Returns a list of files (identified by md5s) found hosted on URLs within a specified domain. The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $Url from threatsample limit 1
+>>_lookup webroot get_urlthreatinsight $Url
+```
+###### Sample Output
+
+![urlthreatinsight](https://user-images.githubusercontent.com/37173181/41605632-7546588e-73ff-11e8-88de-4ac122c39d29.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIMd5HashDetTypeG | List of hash detected to be hosted on queried URL belonging to type G |
+| $BCTIMd5HashDetTypeB | List of hash detected to be hosted on queried URL belonging to type B  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
 
