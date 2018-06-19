@@ -357,8 +357,31 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 
+##### Retrieve file information 
+This endpoint returns file information given its binary MD5 .
+- input : String of MD5 of file for which you want to retrieve information.        
+```
+_fetch $Filehash from threatsample where $Filehash=ec8c89aa5e521572c74e2dd02a4daf78 limit 1
+>>_lookup webroot get_file_info $Filehash
+```
+###### Sample walk-through video link for file information
+[GET FILE INFO](https://drive.google.com/file/d/1i50yeKcTShvKZC7Gu8K7cMwzpv6zzgTl/view?usp=sharing)
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIDeterminationDate   | Determination time of this file . |
+| $BCTIDeterminationType | Determination type. Possible values : B and G. |
+| $BCTIFileSize | File size in byte . |
+| $BCTIFirstSeen | First time the md5 has been detected . |
+| $BCTIMalwareGroup | Malware group of this file . |
+| $BCTIMd5 | The MD5 of the file . |
+| $BCTIPropagationCount | Scaled approximation of the propagation of the file . |
+| $BCTIAPIStatus| Returns the API status code of the request made . |
+
+
 ##### Retrieve IP reputation history   
-This endpoint returns This call returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+This endpoint returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
 
 - input : An IP address for which you want to retrieve information.        
 ```
@@ -379,6 +402,65 @@ The Lookup call returns output in the following structure for available data
 | $BCTIReputationHighRisk | List of time stamp when IP had a high risk reputation  |
 | $BCTIReputationSuspicious | List of time stamp when IP had a suspicious reputation  |
 | $BCTIReputationTrustworthy | List of time stamp when IP had a Trustworthy reputation |
+| $BCTIAPIStatus| Returns the API status code of the request made |
+
+
+##### Retrieve contextual domain stats  
+This endpoint returns the extended contextual information for the domain. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of virtually hosted domains, sub domains, etc.
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $Domain from threatsample limit 1
+>>_lookup webroot get_contextual_domainstats $Domain
+```
+###### Sample walk-through video link for contextual domain stats
+
+
+### Note 
+Reputation score classification for URL
+
+| Threat level       | Description  |
+|:------------- |:-------------|
+|  1 - 20 | Level 0 |
+| 21 – 40 | Level 1 |
+| 41 – 60 | Level 2 |
+| 61 – 80 | Level 3 |
+| 81 – 100 | Level 4 |
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTICommonRegistrantThreatLevel0 | Representing the count of domains that share the same registrant information with this domain at threat level 0 |
+| $BCTICommonRegistrantThreatLevel1 | Representing the count of domains that share the same registrant information with this domain at threat level 1 |
+| $BCTICommonRegistrantThreatLevel2 | Representing the count of domains that share the same registrant information with this domain at threat level 2  |
+| $BCTICommonRegistrantThreatLevel3 | Representing the count of domains that share the same registrant information with this domain at threat level 3  |
+| $BCTICommonRegistrantThreatLevel4 | Representing the count of domains that share the same registrant information with this domain at threat level 4  |
+| $BCTIVirtuallyHostedThreatLevel0 | Representing the count of all virtually hosted domains at threat level 0 |
+| $BCTIVirtuallyHostedThreatLevel1 | Representing the count of all virtually hosted domains at threat level 1 |
+| $BCTIVirtuallyHostedThreatLevel2| Representing the count of all virtually hosted domains at threat level 2 |
+| $BCTIVirtuallyHostedThreatLevel3| Representing the count of all virtually hosted domains at threat level 3 |
+| $BCTIVirtuallyHostedThreatLevel4| Representing the count of all virtually hosted domains at threat level 4 |
+| $BCTIHostingIPsThreatLevel0 | Representing the count of IPs which host this domain at threat level 0 |
+| $BCTIHostingIPsThreatLevel1 | Representing the count of IPs which host this domain at threat level 1 |
+| $BCTIHostingIPsThreatLevel2 | Representing the count of IPs which host this domain at threat level 2 |
+| $BCTIHostingIPsThreatLevel3 | Representing the count of IPs which host this domain at threat level 3 |
+| $BCTIHostingIPsThreatLevel4 | Representing the count of IPs which host this domain at threat level 4 |
+| $BCTIHostedAppsThreatLevel0 | Representing the count of all hosted mobile apps at threat level 0 |
+| $BCTIHostedAppsThreatLevel1 | Representing the count of all hosted mobile apps at threat level 1 |
+| $BCTIHostedAppsThreatLevel2 | Representing the count of all hosted mobile apps at threat level 2 |
+| $BCTIHostedAppsThreatLevel3 | Representing the count of all hosted mobile apps at threat level 3 |
+| $BCTIHostedAppsThreatLevel4 | Representing the count of all hosted mobile apps at threat level 4 |
+| $BCTIHostedFilesThreatLevel0  | Representing the count of all hosted files at threat level 0 |
+| $BCTIHostedFilesThreatLevel1  | Representing the count of all hosted files at threat level 1 |
+| $BCTIHostedFilesThreatLevel2  | Representing the count of all hosted files at threat level 2 |
+| $BCTIHostedFilesThreatLevel3  | Representing the count of all hosted files at threat level 3 |
+| $BCTIHostedFilesThreatLevel4  | Representing the count of all hosted files at threat level 4 |
+| $BCTISubDomainsThreatLevel0  | Representing the count of all sub domains from this domain at threat level 0  |
+| $BCTISubDomainsThreatLevel1  | Representing the count of all sub domains from this domain at threat level 1  |  
+| $BCTISubDomainsThreatLevel2  | Representing the count of all sub domains from this domain at threat level 2  |
+| $BCTISubDomainsThreatLevel3  | Representing the count of all sub domains from this domain at threat level 3  |
+| $BCTISubDomainsThreatLevel4  | Representing the count of all sub domains from this domain at threat level 4  |
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
