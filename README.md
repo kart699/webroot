@@ -565,6 +565,28 @@ The Lookup call returns output in the following structure for available data
 | $$BCTIOutboundURLsThreatLevel4  | Representing the count of all URLs that this file connects to at threat level 4 |
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
+##### Retrieve IP threatinsight  
+This endpoint returns a list of incidents which caused an IP to be flagged as malicious. The response contains the earliest time the incidents were observed, the length of the time the incidents were ongoing, whether the series of incidents was severe enough for the IP to be determined as threat, the specific type of threat(s) detected, and any additional, type-dependent details available for the IP
+
+- input : An IP address for which you want to retrieve information.        
+```
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ipthreatinsight $SrcIP
+```
+
+###### Sample Output
+![GET IP THREATINSIGHT](https://user-images.githubusercontent.com/37173181/41598480-e534b7c4-73ed-11e8-9066-2e03f8951414.jpg)
+
+The Lookup call returns output in the following structure for available data
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIThreatType | Threat found on the queried IP |
+| $BCTIConvictedTime | List of timestamp when file was observed as convicted  |
+| $BCTIHostType  | IP address Hosting example ZuesBot Cnc   |
+| $BCTIHostedURLs  | List of hosting url  |
+| $BCTIIPint  | Integer representation of the requested IP Address.  |
+| $BCTIAPIStatus| Returns the API status code of the request made |
 
 
 ### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
