@@ -24,6 +24,9 @@ Provides dynamic file reputation intelligence of known malicious and whitelisted
 ##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
 
 ### Note 
+
+`threatsample` is a event store used for illustration purpose only
+
 Reputation score classification for URL
 
 |Score Range       | Description  |
