@@ -3,29 +3,30 @@
 
 ### Overview
 
-Webroot is the largest privately held internet security organisation based in the United States operating globally across North America, Europe and the Asia Pacific region.Webroots BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
+Webroot is one of the largest privately held internet security organisations based in the United States with its operations spanning across the globe. Webroot's BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
 
-The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats.This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors.The service also provides information such as historical and geolocation data to help security admins make better threat decisions.   
-Webroot® BrightCloud Security Services include the following catagories
+The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats. This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors. This service also provides information such as historical and geolocation data to help security admins make better threat decisions.
+
+Below is a list of available services:-
+
 ##### Web Classifications
-Provides content classification for billions of webpages to keep users safe from online threats
+Provides content classification for billions of webpages to keep users safe from online threats.
 
 ##### Web Reputation
-Forecasts the security risk of visiting a website and enables administrators to finely tune security settings 
+Forecasts the security risk of visiting a website and enables administrators to fine tune their security settings. 
 
 ##### IP Reputation
-Publish dynamic intelligence of high-risk IP addresses and insight into inbound and outbound communications
+Provides critical intelligence on high-risk IP addresses.
 
 ##### File Reputation
-Provides dynamic file reputation intelligence of known malicious and whitelisted files to stop the distribution of malware
+Provides a dynamic list of file reputation intelligence, such as required signatures for known malicious files and whitelisted files to stop the distribution of malware.
 
 
-
-##### Lookups integrated with WEBROOT BRIGHTCLOUD® THREAT INTELLIGENCE
+##### Few examples on how the available features within Webroot can be used
 
 ### Note 
 
-`threatsample` is a event store used for illustration purpose only
+`threatsample` is an event store used for illustration purposes only.
 
 Reputation score classification for URL
 
@@ -48,7 +49,7 @@ Popularity classification for URL
 | 5  | Unranked site |
 
 ##### Retrieve URL information  
-This endpoint returns content classification and reputation information on the queried URL.
+This feature returns content classification and reputation information on the queried URL.
 - input : An URL for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
@@ -57,7 +58,7 @@ _fetch $Url from threatsample limit 1
 ###### Sample Output 
 ![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
-The Lookup call returns output in the following structure for available data
+The Lookup call returns output in the following structure:
 
   | Fields        | Description  |
 |:------------- |:-------------|
@@ -69,7 +70,8 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 #####  Retrieve reputation information of URL:
-This endpoint returns extended reputation information of URLs, for example: country, popularity,age, etc.
+This feature returns reputation related information of URLs, for example: country, popularity, age, etc.
+
 - input : An URL for which you want to retrieve information.
 
 ```
