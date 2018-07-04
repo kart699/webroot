@@ -22,7 +22,7 @@ Provides critical intelligence on high-risk IP addresses.
 Provides a dynamic list of file reputation intelligence, such as required signatures for known malicious files and whitelisted files to stop the distribution of malware.
 
 
-##### Few examples on how the available features within Webroot can be used
+##### Lookups integrated with DomainTools Webroot 
 
 ### Note 
 
@@ -48,8 +48,12 @@ Popularity classification for URL
 | 4  | Site ranking lower than top 10 million sites |
 | 5  | Unranked site |
 
+For URL category description and IP reputation blacklist category refer the following  
+[IP blacklist reputation category](https://drive.google.com/file/d/1OW7pEC1CIBTHf0VSGBgYmFs8wVuxJ6W5/view?usp=sharing)  
+[URL category descriptions](https://drive.google.com/file/d/1V9ML1yAmPBaSIC9nDxoH8M4_YtBVBq7v/view?usp=sharing)
+
 ##### Retrieve URL information  
-This feature returns content classification and reputation information on the queried URL.
+Returns content classification and reputation information on the queried URL.
 - input : An URL for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
@@ -70,7 +74,7 @@ The Lookup call returns output in the following structure:
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 #####  Retrieve reputation information of URL:
-This feature returns reputation related information of URLs, for example: country, popularity, age, etc.
+Returns reputation related information of URLs, for example: country, popularity, age, etc.
 
 - input : An URL for which you want to retrieve information.
 
@@ -96,7 +100,7 @@ The Lookup call returns output in the following structure for available data
 
 ##### Retrieve WHOIS information on the URL
 
-This endpoint returns abbreviated WHOIS information on the URL
+Returns abbreviated WHOIS information on the URL
 - input : An URL for which you want to retrieve information.
 
 ```
@@ -134,8 +138,8 @@ The Lookup call returns output in the following structure for available data
 
 #####  Retrieve full WHOIS info on the URL.
   
-This endpoint returns full WHOIS information on the URL
-- input : A md5/sha1/sha256 hash will retrieve the most recent report on a given sample
+Returns full WHOIS information on the URL
+- input :  An URL for which you want to retrieve information
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfofull $Url
@@ -195,7 +199,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 ##### Retrieve the phishing score on the object (URL or IP). 
-This endpoint is a synchronous call soserver waits for all URIs to be processed before response to the request.
+This endpoint is a synchronous call so server waits for all URIs to be processed before response to the request.
 - input : An URL or IP for which you want to retrieve information.        
 ```
 _fetch $SrcIP from threatsample limit 1
