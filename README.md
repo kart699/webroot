@@ -199,7 +199,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus | Returns the API status code of the request made |
 
 ##### Retrieve the phishing score on the object (URL or IP). 
-This endpoint is a synchronous call so server waits for all URIs to be processed before response to the request.
+This is a synchronous call so server waits for all URIs to be processed before response to the request.
 - input : An URL or IP for which you want to retrieve information.        
 ```
 _fetch $SrcIP from threatsample limit 1
@@ -217,7 +217,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Submit phishquery on the object (URL or IP). 
-This endpoint is used for sending URIs (URL or IP) where you call back later to get result.
+This is used for sending URIs (URL or IP) where you call back later to get result.
 - input : An URL or IP for which you want to retrieve information.        
 ```
 _fetch $SrcIP from threatsample limit 1
@@ -241,7 +241,7 @@ Which can later be used to retrive response with the  get_phishqueryresponse end
 
             
 ##### Retrieve the phish query response for the ticket. 
-This endpoint uses the phishrequestticket to request result.
+This will use the phishrequestticket to request result.
 - input : String of phish request ticket.        
 ```
 _retrieve wbticket 
@@ -263,7 +263,7 @@ The Lookup call returns output in the following structure for available data
 using the stored ticket from the submit phishquery endpoint we retrieve the information from this endpoint
 
 ##### Retrieve IP information  
-This endpoint returns content classification and reputation information on the queried IP address.
+Returns content classification and reputation information on the queried IP address.
 - input : An IP address for which you want to retrieve information.        
 ```
 _fetch $Url from threatsample limit 1
@@ -290,7 +290,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve IP geo information  
-This endpoint returns geo information on the queried IP address.
+Returns geo information on the queried IP address.
 - input : An IP address for which you want to retrieve information.        
 ```
 _fetch $SrcIP from threatsample limit 1
@@ -317,7 +317,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 ##### Retrieve IP threat history   
-This endpoint returns threat history of the requested IP.
+Returns threat history of the requested IP.
 - input : An IP address for which you want to retrieve information.        
 ```
 _fetch $SrcIP from threatsample limit 1
@@ -342,7 +342,7 @@ The report also includes variable fields depending on the positive detections. F
 
 
 ##### Retrieve IP reputation history   
-This endpoint returns This call returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+Returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
 
 - input : An IP address for which you want to retrieve information.        
 ```
@@ -367,7 +367,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve file information 
-This endpoint returns file information given its binary MD5 .
+Returns file information given its binary MD5 .
 - input : String of MD5 of file for which you want to retrieve information.        
 ```
 _fetch $Filehash from threatsample where $Filehash=ec8c89aa5e521572c74e2dd02a4daf78 limit 1
@@ -390,7 +390,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve IP reputation history   
-This endpoint returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+Returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
 
 - input : An IP address for which you want to retrieve information.        
 ```
@@ -415,7 +415,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve contextual domain stats  
-This endpoint returns the extended contextual information for the domain. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of virtually hosted domains, sub domains, etc.
+Returns the extended contextual information for the domain. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of virtually hosted domains, sub domains, etc.
 
 - input : A domain for which you want to retrieve information.        
 ```
@@ -475,7 +475,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve contextual IP stats  
-This endpoint returns extended contextual information for the IP. The response contains the counts of related entities grouped on different threat levels (0-4)
+Returns extended contextual information for the IP. The response contains the counts of related entities grouped on different threat levels (0-4)
 
 - input : An IP address for which you want to retrieve information.        
 ```
@@ -525,7 +525,7 @@ The Lookup call returns output in the following structure for available data
 
 
 ##### Retrieve contextual File stats  
-This endpoint returns the extended contextual information for the File represented by its MD5 string. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of outbound ips, hosting ips, etc.
+Returns the extended contextual information for the File represented by its MD5 string. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of outbound ips, hosting ips, etc.
 
 - input : A MD5 string for which you want to retrieve information.        
 ```
@@ -575,7 +575,7 @@ The Lookup call returns output in the following structure for available data
 | $BCTIAPIStatus| Returns the API status code of the request made |
 
 ##### Retrieve IP threatinsight  
-This endpoint returns a list of incidents which caused an IP to be flagged as malicious. The response contains the earliest time the incidents were observed, the length of the time the incidents were ongoing, whether the series of incidents was severe enough for the IP to be determined as threat, the specific type of threat(s) detected, and any additional, type-dependent details available for the IP
+Returns a list of incidents which caused an IP to be flagged as malicious. The response contains the earliest time the incidents were observed, the length of the time the incidents were ongoing, whether the series of incidents was severe enough for the IP to be determined as threat, the specific type of threat(s) detected, and any additional, type-dependent details available for the IP
 
 - input : An IP address for which you want to retrieve information.        
 ```
