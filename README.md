@@ -21,6 +21,13 @@ Provides critical intelligence on high-risk IP addresses.
 #### File Reputation
 Provides a dynamic list of file reputation intelligence, such as required signatures for known malicious files and whitelisted files to stop the distribution of malware.
 
+### PRE-REQUISITES to use Webroot (BRIGHTCLOUD THREAT INTELLIGENCE) and DNIF  
+Outbound access required to resolve Webroot (BRIGHTCLOUD THREAT INTELLIGENCE) API
+
+| Protocol   | Source IP  | Source Port  | Direction	 | Destination Domain | Destination Port  |  
+|:------------- |:-------------|:-------------|:-------------|:-------------|:-------------|  
+| TCP | DS,CR,A10 | Any | Egress	| github.com | 443 |
+| TCP | DS,CR,A10 | Any | Egress	| brightcloud.com | 443 |
 
 ### Webroot (BRIGHTCLOUD THREAT INTELLIGENCE) lookup plugin functions
  
