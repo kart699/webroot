@@ -77,8 +77,7 @@ The output of the lookup call has the following structure (for the available dat
   | Fields        | Description  |
 |:------------- |:-------------|
 | $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) is of the same category. This enables more efficient caching |
-| $BCTIReputation      | Reputation score of the queried URL 
-(Refer to the Reputation and popularity section for details on reputation score classification)) |
+| $BCTIReputation      | Reputation score of the queried URL[Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification)) |
 | $BCTILCP | Least common part |
 | $BCTICategoryId | A positive integer number representing the category Id |
 | $BCTICategoryconfidence | Confidence score the category assigned to this URL |
