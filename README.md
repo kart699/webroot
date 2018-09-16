@@ -22,7 +22,7 @@ Provides critical intelligence on high-risk IP addresses.
 Provides a dynamic list of file reputation intelligence, such as required signatures for known malicious files and whitelisted files to stop the distribution of malware.
 
 
-### Webroot (Brightcloud) lookup plugin functions
+### Webroot (BRIGHTCLOUD THREAT INTELLIGENCE) lookup plugin functions
  
 This section explains the details of the functions that can be used with the Webroot Brightcloud lookup plugin.
 
@@ -444,44 +444,20 @@ The output of the lookup call has the following structure (for the available dat
 | $BCTIAPIStatus| API status code of the request  |
 
 
-##### Retrieve IP reputation history   
-Returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+### get_contextual_domainstats
+This function returns extended contextual information for the domain. The response contains the counts of related entities (for example virtually hosted domains, sub-domains) grouped by different threat levels (0-4). 
 
-- input : An IP address for which you want to retrieve information.        
-```
-_fetch $SrcIP from threatsample limit 1
->>_lookup webroot get_ip_rephistory $SrcIP
-```
-###### Sample walk-through video link for IP reputation history
-[GET IP REPUTATION HISTORY ](https://drive.google.com/file/d/1sV8Vhqe0AZhBkn26W7QU1nYeSe_aaovy/view?usp=sharing)
+#### Input 
+- Domain name    
 
-The Lookup call returns output in the following structure for available data
-
-  | Fields        | Description  |
-|:------------- |:-------------|
-| $BCTIAverageReputation   | Decimal number representing the average reputation of the IP  |
-| $BCTIHistoryCount | Number representing the number of time the IP reputation is recorded. |
-| $BCTIMaxReputation | Number representing the highest recorded reputation of the IP |
-| $BCTIMinReputation | Number representing the lowest recorded reputation of the IP |
-| $BCTIReputationHighRisk | List of time stamp when IP had a high risk reputation  |
-| $BCTIReputationSuspicious | List of time stamp when IP had a suspicious reputation  |
-| $BCTIReputationTrustworthy | List of time stamp when IP had a Trustworthy reputation |
-| $BCTIAPIStatus| Returns the API status code of the request made |
-
-
-##### Retrieve contextual domain stats  
-Returns the extended contextual information for the domain. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of virtually hosted domains, sub domains, etc.
-
-- input : A domain for which you want to retrieve information.        
+#### Example
 ```
 _fetch $Domain from threatsample limit 1
 >>_lookup webroot get_contextual_domainstats $Domain
-```
-###### Sample walk-through video link for contextual domain stats
-[Contextual Domain Stats](https://drive.google.com/file/d/1ATqHzdvghvuYjAPJFxqBkVlLAIAirJVy/view?usp=sharing)
 
-### Note 
-Reputation score classification
+```
+#### Note 
+The reputation score classification of a domain is as given below
 
 | Reputation range       | Threat level |
 |:------------- |:-------------|
@@ -491,57 +467,60 @@ Reputation score classification
 | 61 – 80 | Level 3 |
 | 81 – 100 | Level 4 |
 
-The Lookup call returns output in the following structure for available data
+#### Output
+
+Click [here](https://drive.google.com/file/d/1ATqHzdvghvuYjAPJFxqBkVlLAIAirJVy/view?usp=sharing) to view the output of the above example.
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTICommonRegistrantThreatLevel0 | Representing the count of domains that share the same registrant information with this domain at threat level 0 |
-| $BCTICommonRegistrantThreatLevel1 | Representing the count of domains that share the same registrant information with this domain at threat level 1 |
-| $BCTICommonRegistrantThreatLevel2 | Representing the count of domains that share the same registrant information with this domain at threat level 2  |
-| $BCTICommonRegistrantThreatLevel3 | Representing the count of domains that share the same registrant information with this domain at threat level 3  |
-| $BCTICommonRegistrantThreatLevel4 | Representing the count of domains that share the same registrant information with this domain at threat level 4  |
-| $BCTIVirtuallyHostedThreatLevel0 | Representing the count of all virtually hosted domains at threat level 0 |
-| $BCTIVirtuallyHostedThreatLevel1 | Representing the count of all virtually hosted domains at threat level 1 |
-| $BCTIVirtuallyHostedThreatLevel2| Representing the count of all virtually hosted domains at threat level 2 |
-| $BCTIVirtuallyHostedThreatLevel3| Representing the count of all virtually hosted domains at threat level 3 |
-| $BCTIVirtuallyHostedThreatLevel4| Representing the count of all virtually hosted domains at threat level 4 |
-| $BCTIHostingIPsThreatLevel0 | Representing the count of IPs which host this domain at threat level 0 |
-| $BCTIHostingIPsThreatLevel1 | Representing the count of IPs which host this domain at threat level 1 |
-| $BCTIHostingIPsThreatLevel2 | Representing the count of IPs which host this domain at threat level 2 |
-| $BCTIHostingIPsThreatLevel3 | Representing the count of IPs which host this domain at threat level 3 |
-| $BCTIHostingIPsThreatLevel4 | Representing the count of IPs which host this domain at threat level 4 |
-| $BCTIHostedAppsThreatLevel0 | Representing the count of all hosted mobile apps at threat level 0 |
-| $BCTIHostedAppsThreatLevel1 | Representing the count of all hosted mobile apps at threat level 1 |
-| $BCTIHostedAppsThreatLevel2 | Representing the count of all hosted mobile apps at threat level 2 |
-| $BCTIHostedAppsThreatLevel3 | Representing the count of all hosted mobile apps at threat level 3 |
-| $BCTIHostedAppsThreatLevel4 | Representing the count of all hosted mobile apps at threat level 4 |
-| $BCTIHostedFilesThreatLevel0  | Representing the count of all hosted files at threat level 0 |
-| $BCTIHostedFilesThreatLevel1  | Representing the count of all hosted files at threat level 1 |
-| $BCTIHostedFilesThreatLevel2  | Representing the count of all hosted files at threat level 2 |
-| $BCTIHostedFilesThreatLevel3  | Representing the count of all hosted files at threat level 3 |
-| $BCTIHostedFilesThreatLevel4  | Representing the count of all hosted files at threat level 4 |
-| $BCTISubDomainsThreatLevel0  | Representing the count of all sub domains from this domain at threat level 0  |
-| $BCTISubDomainsThreatLevel1  | Representing the count of all sub domains from this domain at threat level 1  |  
-| $BCTISubDomainsThreatLevel2  | Representing the count of all sub domains from this domain at threat level 2  |
-| $BCTISubDomainsThreatLevel3  | Representing the count of all sub domains from this domain at threat level 3  |
-| $BCTISubDomainsThreatLevel4  | Representing the count of all sub domains from this domain at threat level 4  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTICommonRegistrantThreatLevel0 | Number of domains, at threat level 0, that share the same registrant information with this domain |
+| $BCTICommonRegistrantThreatLevel1 | Number of domains, at threat level 1, that share the same registrant information with this domain |
+| $BCTICommonRegistrantThreatLevel2 | Number of domains, at threat level 2, that share the same registrant information with this domain |
+| $BCTICommonRegistrantThreatLevel3 | Number of domains, at threat level 3, that share the same registrant information with this domain  |
+| $BCTICommonRegistrantThreatLevel4 | Number of domains, at threat level 4, that share the same registrant information with this domain |
+| $BCTIVirtuallyHostedThreatLevel0 | Number of virtually hosted domains, at threat level 0, that share the same virtual host with this domain |
+| $BCTIVirtuallyHostedThreatLevel1 | Number of virtually hosted domains, at threat level 1, that share the same virtual host with this domain |
+| $BCTIVirtuallyHostedThreatLevel2| Number of virtually hosted domains, at threat level 2, that share the same virtual host with this domain |
+| $BCTIVirtuallyHostedThreatLevel3| Number of virtually hosted domains, at threat level 3, that share the same virtual host with this domain |
+| $BCTIVirtuallyHostedThreatLevel4| Number of virtually hosted domains, at threat level 4, that share the same virtual host with this domain |
+| $BCTIHostingIPsThreatLevel0 | Number of IP addresses, at threat level 0, that host this domain |
+| $BCTIHostingIPsThreatLevel1 | Number of IP addresses, at threat level 1, that host this domain |
+| $BCTIHostingIPsThreatLevel2 | Number of IP addresses, at threat level 2, that host this domain |
+| $BCTIHostingIPsThreatLevel3 | Number of IP addresses, at threat level 3, that host this domain |
+| $BCTIHostingIPsThreatLevel4 | Number of IP addresses, at threat level 4, that host this domain |
+| $BCTIHostedAppsThreatLevel0 | Number of mobile applications, at threat level 0, hosted on this domain |
+| $BCTIHostedAppsThreatLevel1 | Number of mobile applications, at threat level 1, hosted on this domain |
+| $BCTIHostedAppsThreatLevel2 | Number of mobile applications, at threat level 2, hosted on this domain |
+| $BCTIHostedAppsThreatLevel3 | Number of mobile applications, at threat level 3, hosted on this domain |
+| $BCTIHostedAppsThreatLevel4 | Number of mobile applications, at threat level 4, hosted on this domain |
+| $BCTIHostedFilesThreatLevel0  | Number of files, at threat level 0, hosted on this domain |
+| $BCTIHostedFilesThreatLevel1  | Number of files, at threat level 1, hosted on this domain |
+| $BCTIHostedFilesThreatLevel2  | Number of files, at threat level 2, hosted on this domain |
+| $BCTIHostedFilesThreatLevel3  | Number of files, at threat level 3, hosted on this domain |
+| $BCTIHostedFilesThreatLevel4  | Number of files, at threat level 4, hosted on this domain |
+| $BCTISubDomainsThreatLevel0  | Number of sub-domains, at threat level 0, under this domain  |
+| $BCTISubDomainsThreatLevel1  | Number of sub-domains, at threat level 1, under this domain  |  
+| $BCTISubDomainsThreatLevel2  | Number of sub-domains, at threat level 2, under this domain  |
+| $BCTISubDomainsThreatLevel3  | Number of sub-domains, at threat level 3, under this domain  |
+| $BCTISubDomainsThreatLevel4  | Number of sub-domains, at threat level 4, under this domain  |
+| $BCTIAPIStatus| API status code of the request |
 
 
 
-##### Retrieve contextual IP stats  
-Returns extended contextual information for the IP. The response contains the counts of related entities grouped on different threat levels (0-4)
+### get_contextual_ipstats
+This function returns extended contextual information for the IP address. The response contains the counts of related entities grouped by different threat levels (0-4).
 
-- input : An IP address for which you want to retrieve information.        
+#### Input 
+- IP address 
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_contextual_ipstats $SrcIP
 ```
-###### Sample walk-through video link for contextual IP stats
-[GET CONTEXTUAL IP STATS](https://drive.google.com/file/d/1F6fBOk_ScCDu1Rh7_fdGnOElxRobGoqf/view?usp=sharing)
-
-
-### Note 
+#### Note 
 Reputation score classification
 
 | Reputation range       | Threat level |
@@ -552,48 +531,50 @@ Reputation score classification
 | 61 – 80 | Level 3 |
 | 81 – 100 | Level 4 |
 
-The Lookup call returns output in the following structure for available data
+#### Output
+
+Click [here](https://drive.google.com/file/d/1F6fBOk_ScCDu1Rh7_fdGnOElxRobGoqf/view?usp=sharing) to view the output of the above example.
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIASNThreatLevel0 | Representing the count of all IPs that share the same asn of this IP at threat level 0 |
-| $BCTIASNThreatLevel1 | Representing the count of all IPs that share the same asn of this IP at threat level 1 |
-| $BCTIASNThreatLevel2| Representing the count of all IPs that share the same asn of this IP at threat level 2 |
-| $BCTIASNThreatLevel3| Representing the count of all IPs that share the same asn of this IP at threat level 3 |
-| $BCTIASNThreatLevel4| Representing the count of all IPs that share the same asn of this IP at threat level 4 |
-| $BCTIHostedURLsThreatLevel0 | Representing the count of all virtually hosted domains at threat level 0 |
-| $BCTIHostedURLsThreatLevel1 | Representing the count of all virtually hosted domains at threat level 1 |
-| $BCTIHostedURLsThreatLevel2 | Representing the count of all virtually hosted domains at threat level 2 |
-| $BCTIHostedURLsThreatLevel3 | Representing the count of all virtually hosted domains at threat level 3 |
-| $BCTIHostedURLsThreatLevel4 | Representing the count of all virtually hosted domains at threat level 4 |
-| $BCTIHostedAppsThreatLevel0 | Representing the count of all hosted mobile apps at threat level 0 |
-| $BCTIHostedAppsThreatLevel1 | Representing the count of all hosted mobile apps at threat level 1 |
-| $BCTIHostedAppsThreatLevel2 | Representing the count of all hosted mobile apps at threat level 2 |
-| $BCTIHostedAppsThreatLevel3 | Representing the count of all hosted mobile apps at threat level 3 |
-| $BCTIHostedAppsThreatLevel4 | Representing the count of all hosted mobile apps at threat level 4 |
-| $BCTIHostedFilesThreatLevel0  | Representing the count of all hosted files at threat level 0 |
-| $BCTIHostedFilesThreatLevel1  | Representing the count of all hosted files at threat level 1 |
-| $BCTIHostedFilesThreatLevel2  | Representing the count of all hosted files at threat level 2 |
-| $BCTIHostedFilesThreatLevel3  | Representing the count of all hosted files at threat level 3 |
-| $BCTIHostedFilesThreatLevel4  | Representing the count of all hosted files at threat level 4 |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIASNThreatLevel0 | Number of IP addresses, at threat level 0, that have the same ASN as this IP address |
+| $BCTIASNThreatLevel1 | Number of IP addresses, at threat level 1, that have the same ASN as this IP address |
+| $BCTIASNThreatLevel2 | Number of IP addresses, at threat level 2, that have the same ASN as this IP address |
+| $BCTIASNThreatLevel3 | Number of IP addresses, at threat level 3, that have the same ASN as this IP address |
+| $BCTIASNThreatLevel4 | Number of IP addresses, at threat level 4, that have the same ASN as this IP address |
+| $BCTIHostedURLsThreatLevel0 | Number of virtually hosted domains, at threat level 0, that share the same virtual host with this IP address |
+| $BCTIHostedURLsThreatLevel1 | Number of virtually hosted domains, at threat level 1, that share the same virtual host with this IP address |
+| $BCTIHostedURLsThreatLevel2 | Number of virtually hosted domains, at threat level 2, that share the same virtual host with this IP address |
+| $BCTIHostedURLsThreatLevel3 | Number of virtually hosted domains, at threat level 3, that share the same virtual host with this IP address |
+| $BCTIHostedURLsThreatLevel4 | Number of virtually hosted domains, at threat level 4, that share the same virtual host with this IP address |
+| $BCTIHostedAppsThreatLevel0 | Number of mobile applications, at threat level 0, hosted at this IP address |
+| $BCTIHostedAppsThreatLevel1 | Number of mobile applications, at threat level 1, hosted at this IP address |
+| $BCTIHostedAppsThreatLevel2 | Number of mobile applications, at threat level 2, hosted at this IP address |
+| $BCTIHostedAppsThreatLevel3 | Number of mobile applications, at threat level 3, hosted at this IP address |
+| $BCTIHostedAppsThreatLevel4 | Number of mobile applications, at threat level 4, hosted at this IP address |
+| $BCTIHostedFilesThreatLevel0  | Number of files, at threat level 0, hosted at this IP address |
+| $BCTIHostedFilesThreatLevel1  | Number of files, at threat level 1, hosted at this IP address |
+| $BCTIHostedFilesThreatLevel2  | Number of files, at threat level 2, hosted at this IP address |
+| $BCTIHostedFilesThreatLevel3  | Number of files, at threat level 3, hosted at this IP address |
+| $BCTIHostedFilesThreatLevel4  | Number of files, at threat level 4, hosted at this IP address |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Retrieve contextual File stats  
-Returns the extended contextual information for the File represented by its MD5 string. The response contains the counts of related entities grouped on different threat levels (0-4). For example: the count of outbound ips, hosting ips, etc.
+### get_contextual_filestats
+This function returns extended contextual information for the file represented by its MD5 string. The response contains the counts of related entities grouped by different threat levels (0-4). For example: the count of outbound ips, hosting ips, and so on.
 
-- input : A MD5 string for which you want to retrieve information.        
+#### Input 
+- MD5 hash (string)
+
+#### Example
 ```
 _fetch $Filehash from threatsample where $Filehash=195a7ef654ca94d9aff5142d139f9486 limit 1
 >>_lookup webroot get_contextual_filestats $Filehash
 ```
-
-###### Sample walk-through video link for contextual IP stats
-[GET CONTEXTUAL FILE STATS](https://drive.google.com/file/d/1UTii1OjsCWiEtsZp6c7rcGvIpQlTiW6n/view?usp=sharing)
-
-
 ### Note 
-Reputation score classification
+The reputation score classification of a file hash is as given below
 
 | Reputation range       | Threat level |
 |:------------- |:-------------|
@@ -603,123 +584,147 @@ Reputation score classification
 | 61 – 80 | Level 3 |
 | 81 – 100 | Level 4 |
 
-The Lookup call returns output in the following structure for available data
+
+#### Output
+
+Click [here](https://drive.google.com/file/d/1UTii1OjsCWiEtsZp6c7rcGvIpQlTiW6n/view?usp=sharing) to view the output of the above example.
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIHostingIPsThreatLevel0 | Representing the count of all IPs that host this file at threat level 0 |
-| $BCTIHostingIPsThreatLevel1 | Representing the count of all IPs that host this file at threat level 1 |
-| $BCTIHostingIPsThreatLevel2| Representing the count of all IPs that host this file at threat level 2 |
-| $BCTIHostingIPsThreatLevel3| Representing the count of all IPs that host this file at threat level 3 |
-| $BCTIHostingIPsThreatLevel4| Representing the count of all IPs that host this file at threat level 4 |
-| $BCTIHostingURLsThreatLevel0 | Representing the count of all URLs that host this file at threat level 0 |
-| $BCTIHostingURLsThreatLevel1 | Representing the count of all URLs that host this file at threat level 1 |
-| $BCTIHostingURLsThreatLevel2 | Representing the count of all URLs that host this file at threat level 2 |
-| $BCTIHostingURLsThreatLevel3 | Representing the count of all URLs that host this file at threat level 3 |
-| $BCTIHostingURLsThreatLevel4 | Representing the count of all URLs that host this file at threat level 4 |
-| $BCTIOutboundIPsThreatLevel0 | Representing the count of all IPs that this file connects to at threat level 0 |
-| $BCTIOutboundIPsThreatLevel1 | Representing the count of all IPs that this file connects to at threat level 1 |
-| $BCTIOutboundIPsThreatLevel2 | Representing the count of all IPs that this file connects to at threat level 2 |
-| $BCTIOutboundIPsThreatLevel3 | Representing the count of all IPs that this file connects to at threat level 3 |
-| $BCTIOutboundIPsThreatLevel4 | Representing the count of all IPs that this file connects to at threat level 4 |
-| $BCTIOutboundURLsThreatLevel0  | Representing the count of all URLs that this file connects to at threat level 0  |
-| $BCTIOutboundURLsThreatLevel1  | Representing the count of all URLs that this file connects to at threat level 1 |
-| $BCTIOutboundURLsThreatLevel2  | Representing the count of all URLs that this file connects to at threat level 2 |
-| $BCTIOutboundURLsThreatLevel3  | Representing the count of all URLs that this file connects to at threat level 3 |
-| $$BCTIOutboundURLsThreatLevel4  | Representing the count of all URLs that this file connects to at threat level 4 |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIHostingIPsThreatLevel0 | Number of IP addresses, at threat level 0, that host this file |
+| $BCTIHostingIPsThreatLevel1 | Number of IP addresses, at threat level 1, that host this file |
+| $BCTIHostingIPsThreatLevel2 | Number of IP addresses, at threat level 2, that host this file |
+| $BCTIHostingIPsThreatLevel3 | Number of IP addresses, at threat level 3, that host this file |
+| $BCTIHostingIPsThreatLevel4 | Number of IP addresses, at threat level 4, that host this file |
+| $BCTIHostingURLsThreatLevel0 | Number of URL(s), at threat level 0, that host this file |
+| $BCTIHostingURLsThreatLevel1 | Number of URL(s), at threat level 1, that host this file |
+| $BCTIHostingURLsThreatLevel2 | Number of URL(s), at threat level 2, that host this file |
+| $BCTIHostingURLsThreatLevel3 | Number of URL(s), at threat level 3, that host this file |
+| $BCTIHostingURLsThreatLevel4 | Number of URL(s), at threat level 4, that host this file |
+| $BCTIOutboundIPsThreatLevel0 | Number of IP addresses, at threat level 0, that this file connects to |
+| $BCTIOutboundIPsThreatLevel1 | Number of IP addresses, at threat level 1, that this file connects to |
+| $BCTIOutboundIPsThreatLevel2 | Number of IP addresses, at threat level 2, that this file connects to |
+| $BCTIOutboundIPsThreatLevel3 | Number of IP addresses, at threat level 3, that this file connects to |
+| $BCTIOutboundIPsThreatLevel4 | Number of IP addresses, at threat level 4, that this file connects to |
+| $BCTIOutboundURLsThreatLevel0  | Number of URL(s), threat level 0, that this file connects to |
+| $BCTIOutboundURLsThreatLevel1  | Number of URL(s), threat level 1, that this file connects to |
+| $BCTIOutboundURLsThreatLevel2  | Number of URL(s), threat level 2, that this file connects to |
+| $BCTIOutboundURLsThreatLevel3  | Number of URL(s), threat level 3, that this file connects to |
+| $$BCTIOutboundURLsThreatLevel4 | Number of URL(s), threat level 4, that this file connects to |
+| $BCTIAPIStatus| API status code of the request |
 
-##### Retrieve IP threatinsight  
-Returns a list of incidents which caused an IP to be flagged as malicious. The response contains the earliest time the incidents were observed, the length of the time the incidents were ongoing, whether the series of incidents was severe enough for the IP to be determined as threat, the specific type of threat(s) detected, and any additional, type-dependent details available for the IP
 
-- input : An IP address for which you want to retrieve information.        
+### get_ipthreatinsight
+This function returns a list of incidents that cause an IP address to be flagged as malicious. The response contains
+- The earliest time the incidents were observed, 
+- The duration of  the incidents, 
+- Whether the series of incidents was severe enough for the IP to be determined as a threat, 
+- The specific type of threat(s) detected, and 
+- Any additional, type-dependent details available for the IP address
+
+#### Input 
+- IP address 
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_ipthreatinsight $SrcIP
 ```
 
-###### Sample Output
+#### Output
+
+The output of the query is as shown below
 ![GET IP THREATINSIGHT](https://user-images.githubusercontent.com/37173181/41598480-e534b7c4-73ed-11e8-9066-2e03f8951414.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIThreatType | Threat found on the queried IP |
-| $BCTIConvictedTime | List of timestamp when file was observed as convicted  |
-| $BCTIHostType  | IP address Hosting example ZuesBot Cnc   |
-| $BCTIHostedURLs  | List of hosting url  |
-| $BCTIIPint  | Integer representation of the requested IP Address.  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIThreatType | Threat found on the queried IP address |
+| $BCTIConvictedTime | List of timestamps when the file was convicted  |
+| $BCTIHostType  | Hosting IP address (for example ZuesBot, Cnc)   |
+| $BCTIHostedURLs  | List of hosting URL(s)  |
+| $BCTIIPint  | Integer representation of the requested IP address  |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Retrieve URL threatinsight  
-Returns a list of files (identified by md5s) found hosted on URLs within a specified domain. The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
+### get_urlthreatinsight
+This function returns a list of files (identified by their md5 hashes) hosted on URL(s) within a specified domain. The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
 
-- input : An IP address for which you want to retrieve information.        
+#### Input 
+- URL
+
+#### Example
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_urlthreatinsight $Url
 ```
-###### Sample Output
-
+#### Output
+The output of the query is as shown below
 ![urlthreatinsight](https://user-images.githubusercontent.com/37173181/41605632-7546588e-73ff-11e8-88de-4ac122c39d29.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIMd5HashDetTypeG | List of hash detected  as good  hosted on queried URL  |
-| $BCTIMd5HashDetTypeB | List of hash detected as bad hosted on queried URL  |
-| $BCTIMd5HashDetTypeNU | List of hash detected as not determined hosted on queried URL  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIMd5HashDetTypeG | List of hash(es) detected as good and hosted on the queried URL  |
+| $BCTIMd5HashDetTypeB | List of hash(es) detected as bad and hosted on the queried URL |
+| $BCTIMd5HashDetTypeNU | List of hash(es) detected as not determined and hosted on the queried URL  |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Retrieve URL threatinsight for md5
-Returns a list of URLs found hosting a specified file (identified by md5). The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
+### get_urlthreatinsight_md5
+This function returns a list of URL(s) hosting a specified file (identified by its md5 hash). The response contains the file's threat information, the URL's categorization and reputation information, and the time at which the correlation between the file and the URL was detected.
 
-- input : String of MD5 for which you want to retrieve information.        
+#### Input 
+- MD5 hash (string)   
+
+#### Example
 ```
 _fetch $Filehash from threatsample limit 1
 >>_lookup webroot get_urlthreatinsight_md5 $Filehash
 ```
-###### Sample walk-through video link for URL threatinsight using md5
-[URL THREATINSIGHT MD5](https://drive.google.com/file/d/1bLbX_P9Z7lEOVUJceM-dUq2icgWmMBMx/view?usp=sharing)
 
-The Lookup call returns output in the following structure for available data
+#### Output
+
+Click [here](https://drive.google.com/file/d/1bLbX_P9Z7lEOVUJceM-dUq2icgWmMBMx/view?usp=sharing) to view the output of the above example.
+The output of the lookup call has the following structure (for the available data)
+
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIDeterminationType | Determination type can be (b,g,nu). b stands for bad, g stands for good and nu stands for not determined |
-| $BCTIDeterminationDate | Determination time of the file  |
+| $BCTIDeterminationType | Determination type Possible values: b (bad), g (good) or nu (not determined) |
+| $BCTIDeterminationDate | Determination (classification) time of the file  |
 | $BCTIFileSize | File size in bytes | 
-| $BCTIFirstSeen | File last seen | 
+| $BCTIFirstSeen | Time when the file was last accessed | 
 | $BCTIMalwareGroup | Type of malware exhibited by the file | 
 | $BCTIFullSourceURL | Full URL (including path) found hosting the file |
-| $BCTIPropagationCount  | Scaled approximation of the propagation of the file  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIPropagationCount  | Scaled approximation of the propagation of the file |
+| $BCTIAPIStatus| API status code of the request |
 
 
-### Using the WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF  
+### Using the WEBROOT (BRIGHTCLOUD THREAT INTELLIGENCE) API and DNIF  
 The BRIGHTCLOUD THREAT INTELLIGENCE API is found on github at 
 
   https://github.com/dnif/lookup-webroot
 
-#### Getting started with WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE API and DNIF
+### Getting started with WEBROOT (BRIGHTCLOUD THREAT INTELLIGENCE) API and DNIF
 
-1. #####    Login to your Data Store, Correlator, and A10 containers.  
+1. ####    Login to your Data Store, Correlator, and A10 containers.  
    [ACCESS DNIF CONTAINER VIA SSH](https://dnif.it/docs/guides/tutorials/access-dnif-container-via-ssh.html)
-2. #####    Move to the ‘/dnif/<Deployment-key/lookup_plugins’ folder path.
+2. ####    Move to the `/dnif/<Deployment-key>/lookup_plugins` folder path.
 ```
 $cd /dnif/CnxxxxxxxxxxxxV8/lookup_plugins/
 ```
-3. #####   Clone using the following command  
+3. ####   Clone using the following command  
 ```  
 git clone https://github.com/dnif/lookup-webroot.git webroot
 ```
-4. #####   Move to the ‘/dnif/<Deployment-key/lookup_plugins/webroot/’ folder path and open dnifconfig.yml configuration file     
-    
-   Replace the <tags> with your WEBROOT BRIGHTCLOUD THREAT INTELLIGENCE oemid,deviceid,uid
+4. ####   4.Navigate to the `/dnif/<Deployment-key>/lookup_plugins/webroot/` folder path and open the dnifconfig.yml configuration file
+  Replace the <Add_your_oemid_here>, <Add_your_deviceid_here>, <Add_your_uid_here> tags with your WEBROOT (BRIGHTCLOUD THREAT INTELLIGENCE) oemid, deviceid and uid respectively
+  
 ```
 lookup_plugin:
   BRIGHTCLOUD_OEMID: <Add_your_oemid_here>
