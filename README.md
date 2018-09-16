@@ -3,32 +3,31 @@
 
 ### Overview
 
-Webroot is one of the largest privately held internet security organisations based in the United States with its operations spanning across the globe. Webroot's BrightCloud Service helps network and security vendors augment their customers security by adding a dynamic service to their defenses.  
+Webroot is one of the largest privately held internet security organisations based in the United States with operations spanning across the globe. Webroot's BrightCloud Service helps network and security vendors augment their customer’s security by adding a dynamic service to their defences.
+ 
+The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IP addresses of emerging threats. This intelligence can be used to block traffic from TOR (the onion routing) nodes, proxies, botnets, and other malicious actors. This service also provides information such as historical and geolocation data to help security admins make better threat management decisions.
 
-The BrightCloud Service is powered by the Webroot® Threat Intelligence Platform, which uses a big data architecture to provide the most comprehensive and accurate threat intelligence available today, including up-to-the-minute intelligence on IPs of emerging threats. This intelligence can be used to block traffic from TOR nodes, proxies, botnets, and other malicious actors. This service also provides information such as historical and geolocation data to help security admins make better threat decisions.
+Given below, is a list of available services:
 
-Below is a list of available services:-
-
-##### Web Classifications
+#### Web Classifications
 Provides content classification for billions of webpages to keep users safe from online threats.
 
-##### Web Reputation
+#### Web Reputation
 Forecasts the security risk of visiting a website and enables administrators to fine tune their security settings. 
 
-##### IP Reputation
+#### IP Reputation
 Provides critical intelligence on high-risk IP addresses.
 
-##### File Reputation
+#### File Reputation
 Provides a dynamic list of file reputation intelligence, such as required signatures for known malicious files and whitelisted files to stop the distribution of malware.
 
 
-##### Lookups integrated with DomainTools Webroot 
+### Webroot (Brightcloud) lookup plugin functions
+ 
+This section explains the details of the functions that can be used with the Webroot Brightcloud lookup plugin.
 
-### Note 
-
-`threatsample` is an event store used for illustration purposes only.
-
-Reputation score classification for URL
+#### Reputation and popularity 
+The reputation score classification for URL(s) and IP addresses is as given below
 
 |Score Range       | Description  |
 |:------------- |:-------------|
@@ -38,7 +37,7 @@ Reputation score classification for URL
 | 61 – 80 | Low Risk |
 | 81 – 100 | Trustworthy |
 
-Popularity classification for URL
+The popularity classification for URL(s) is as given below
 
 |Popularity        | Description  |
 |:------------- |:-------------|
@@ -48,26 +47,38 @@ Popularity classification for URL
 | 4  | Site ranking lower than top 10 million sites |
 | 5  | Unranked site |
 
-For URL category description and IP reputation blacklist category refer the following  
+For URL category description and IP blacklist reputation category, refer the links given below  
 [IP blacklist reputation category](https://drive.google.com/file/d/1OW7pEC1CIBTHf0VSGBgYmFs8wVuxJ6W5/view?usp=sharing)  
 [URL category descriptions](https://drive.google.com/file/d/1V9ML1yAmPBaSIC9nDxoH8M4_YtBVBq7v/view?usp=sharing)
 
-##### Retrieve URL information  
-Returns content classification and reputation information on the queried URL.
-- input : An URL for which you want to retrieve information.        
+#### Note
+
+In all the functions explained below, the examples use an event store named **threatsample**.  
+**This event store does not exist in DNIF by default**. However, it can be created/imported.
+
+
+### get_url_info 
+This function returns information about the reputation and content classification of the queried URL.
+#### Input 
+- URL        
+
+#### Example
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_info $Url
 ```
-###### Sample Output 
+
+#### Output 
+The output of the query is as shown below
 ![get_urlinfo](https://user-images.githubusercontent.com/37173181/40767527-65864d5c-64d0-11e8-8883-62996b6dc470.jpg)
 
-The Lookup call returns output in the following structure:
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) are of the same category.This enables more efficient caching. |
-| $BCTIReputation      | Reputation score for the queried URL (Refer to notes section for details on score classification) |
+| $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) is of the same category. This enables more efficient caching |
+| $BCTIReputation      | Reputation score of the queried URL 
+(Refer to the Reputation and popularity section for details on reputation score classification)) |
 | $BCTILCP | Least common part |
 | $BCTICategoryId | A positive integer number representing the category Id |
 | $BCTICategoryconfidence | Confidence score the category assigned to this URL |
