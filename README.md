@@ -77,326 +77,371 @@ The output of the lookup call has the following structure (for the available dat
   | Fields        | Description  |
 |:------------- |:-------------|
 | $BCTIa1cat      | A value of a1cat = 1 indicates that the entire authority (all paths) is of the same category. This enables more efficient caching |
-| $BCTIReputation      | Reputation score of the queried URL[Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification)) |
-| $BCTILCP | Least common part |
-| $BCTICategoryId | A positive integer number representing the category Id |
-| $BCTICategoryconfidence | Confidence score the category assigned to this URL |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIReputation      | <ul><li>Reputation score of the queried URL</li><li> [Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification</li></ul> |
+| $BCTILCP | Least common part of the queried URL |
+| $BCTICategoryId | Positive integer representing the category ID |
+| $BCTICategoryconfidence | Confidence score of the category assigned to this URL |
+| $BCTIAPIStatus | API status code of the request |
 
-#####  Retrieve reputation information of URL:
-Returns reputation related information of URLs, for example: country, popularity, age, etc.
 
-- input : An URL for which you want to retrieve information.
+###  get_url_repinfo
 
+This function returns information about the reputation of the URL (for example country, popularity, age and so on).
+
+#### Input 
+- URL
+
+#### Example
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_repinfo $Url
 ```
 
-##### Sample Output 
+#### Output 
+The output of the query is as shown below
 ![get_urlrepinfo](https://user-images.githubusercontent.com/37173181/41393970-bed98e50-6fc5-11e8-9cde-651451da9b41.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIAge      | Number of months that BrightCloud has known about this authority. |
-| $BCTICountry | Two letter country ID |
-| $BCTIPopularity | Popularity category of the URL (refer to notes section for details on popularity classification)  |
-| $BCTIReputation | Reputation score for the queried URL (refer to notes section for details on score classification) |
-| $BCTIThreatHistory | The number of times that this site has had a security event in the past 12 months It is at least 1 for current security-compromised sites. |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIAge      | Number of months since Webroot (BrightCloud) has known about this authority |
+| $BCTICountry | Two-letter country ID |
+| $BCTIPopularity | <ul><li>Popularity category of the URL </li><li> [Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification</li></ul> |
+| $BCTIReputation      | <ul><li>Reputation score of the queried URL</li><li> [Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification</li></ul> ||
+| $BCTIThreatHistory | <ul><li>Number of times this site has had a security event/incident in the past 12 months</li><li>It is at least 1 for current security-compromised sites</li></ul> |
+| $BCTIAPIStatus | API status code of the request |
 
 
-##### Retrieve WHOIS information on the URL
+### get_url_whoisinfo
 
-Returns abbreviated WHOIS information on the URL
-- input : An URL for which you want to retrieve information.
+This function returns summarized WHOIS information for the URL.
 
+#### Input 
+- URL 
+
+#### Example
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfo $Url
 ```
+#### Output
+Click [here](https://drive.google.com/file/d/11EvQPXkZAR1Xe39C0UWWwpvMSPHZZiJX/view?usp=sharing) to view the output of the above example. 
 
-##### Sample walk-through video link for URL WHOIS 
-[URL WHOIS](https://drive.google.com/file/d/11EvQPXkZAR1Xe39C0UWWwpvMSPHZZiJX/view?usp=sharing)
-
-The Lookup call returns output in the following structure for available data  
+The output of the lookup call has the following structure (for the available data)  
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIAuditUpdateDate | Date of audit update date |
-| $BCTIContactEmail | Email address of contact |
-| $BCTICreatedDate | Created date of the domain associated with the URL  |
-| $BCTIDomainName | Domain Name |
-| $BCTIExpiresDate | Expiry date of the domain associated with the URL |
-| $BCTINameServers | Associated name servers details   |
+| $BCTIAuditUpdateDate | Audit update date |
+| $BCTIContactEmail | Email address of the URL’s contact person  |
+| $BCTICreatedDate | Creation date of the URL’s domain  |
+| $BCTIDomainName | Domain name|
+| $BCTIExpiresDate | Expiry date of the URL’s domain  |
+| $BCTINameServers | Associated nameservers’ details   |
 | $BCTIRegistrantCity  | City of the registrant |
 | $BCTIRegistrantCountry | Country of the registrant |
-| $BCTIRegistrantEmail  | Email contact of registrant  |
+| $BCTIRegistrantEmail  | Email address of the registrant  |
 | $BCTIRegistrantName  |  Name of the registrant  |
-| $BCTIRegistrantOrganization  | Organization of the registrant  |
-| $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
+| $BCTIRegistrantOrganization  | Organization that the registrant belongs to  |
+| $BCTIRegistrantPostalCode  | Postal code of the registrant  |
 | $BCTIRegistrantState  | State of the registrant   |
 | $BCTIRegistrantStreet  | Street of the registrant  |
-| $BCTIRegistrantTelephone  | Telephone of the registrant  |
-| $BCTIRegistrarName  | Name of the Registrar  |
-| $BCTIStandardRegCreatedDate  | Standard registry created date |
-| $BCTIStandardRegExpiresDate | Standard registry expiry date  |
-| $BCTIStandardRegUpdatedDate | Standard registry updated date  |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIRegistrantTelephone  | Telephone number of the registrant  |
+| $BCTIRegistrarName  | Name of the registrar  |
+| $BCTIStandardRegCreatedDate  | Creation date of the standard registry |
+| $BCTIStandardRegExpiresDate | Expiry date of the standard registry  |
+| $BCTIStandardRegUpdatedDate | Updation date of the standard registry  |
+| $BCTIAPIStatus | API status code of the request |
 
-#####  Retrieve full WHOIS info on the URL.
-  
-Returns full WHOIS information on the URL
-- input :  An URL for which you want to retrieve information
+### get_url_whoisinfofull
+
+This function returns the  full (detailed) WHOIS information of the URL
+#### Input 
+- URL 
+#### Example
 ```
 _fetch $Url from threatsample limit 1
 >>_lookup webroot get_url_whoisinfofull $Url
 ```
-##### Sample walk-through video link for full URL WHOIS 
-[URL WHOIS FULL](https://drive.google.com/file/d/1Db5aht1vC3KyjnNr4F38HI1dCgFg33t_/view?usp=sharing)
+##### Output 
 
+Click [here](https://drive.google.com/file/d/1Db5aht1vC3KyjnNr4F38HI1dCgFg33t_/view?usp=sharing) to view the output of the above example.
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
  | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIAdministrativeContactCity | Administration contact city |
-| $BCTIAdministrativeContactCountry | Administration contact country |
-| $BCTIAdministrativeContactEmail | Administration contact email |
-| $BCTIAdministrativeContactFax | Administration contact fax |
-| $BCTIAdministrativeContactFaxext | Administration contact fax extention |
-| $BCTIAdministrativeContactName |  Administration contact name|
-| $BCTIAdministrativeContactOrganization | Administration contact organization |
-| $BCTIAdministrativeContactPostalCode | Administration contact postal code |
-| $BCTIAdministrativeContactState | Administration contact state |
-| $BCTIAdministrativeContactStreet1 | Administration contact street 1 |
-| $BCTIAdministrativeContactStreet2 |  Administration contact street 2 |
-| $BCTIAdministrativeContactStreet3 |  Administration contact street 3 |
-| $BCTIAdministrativeContactStreet4 |  Administration contact street 4 |
-| $BCTIAdministrativeContactTelephone |  Administration contact telephone |
-| $BCTIAdministrativeContactTelephoneExt | Administration contact telephone extention |
-| $BCTIAuditUpdateDate | Date of audit update |
-| $BCTIContactEmail | Email address of contact |
-| $BCTICreatedDate | Created date of the domain associated with the URL  |
-| $BCTIUpdatedDate | Update date of the domain associated with the URL |
-| $BCTIExpiresDate | Expiry date of the domain associated with the URL |
-| $BCTIDomainName | Domain Name |
-| $BCTINameServers | Associated name servers details   |
+| $BCTIAdministrativeContactCity | City of the administrative contact |
+| $BCTIAdministrativeContactCountry | Country of the administrative contact|
+| $BCTIAdministrativeContactEmail | Email address of the administrative contact |
+| $BCTIAdministrativeContactFax | Fax number of the administrative contact |
+| $BCTIAdministrativeContactFaxext | Fax extension number of the administrative contact |
+| $BCTIAdministrativeContactName |  Name of the administrative contact|
+| $BCTIAdministrativeContactOrganization | Organization that the administrative contact belongs to |
+| $BCTIAdministrativeContactPostalCode | Postal code of the administrative contact |
+| $BCTIAdministrativeContactState | State of the administrative contact |
+| $BCTIAdministrativeContactStreet1 |  Street address line 1 of the administrative contact |
+| $BCTIAdministrativeContactStreet2 |  Street address line 2 of the administrative contact |
+| $BCTIAdministrativeContactStreet3 |  Street address line 3 of the administrative contact |
+| $BCTIAdministrativeContactStreet4 |  Street address line 4 of the administrative contact |
+| $BCTIAdministrativeContactTelephone |  Telephone number of the administrative contact |
+| $BCTIAdministrativeContactTelephoneExt | Extension number of the administrative contact |
+| $BCTIAuditUpdateDate | Audit update date |
+| $BCTIContactEmail | Email address of the contact person |
+| $BCTICreatedDate | Creation date of the URL’s domain  |
+| $BCTIUpdatedDate | Updation date for the URL’s domain  |
+| $BCTIExpiresDate | Expiry date of the URL’s domain |
+| $BCTIDomainName | Domain name |
+| $BCTINameServers | Associated nameservers’ details   |
 | $BCTIRegistrantCity  | City of the registrant |
 | $BCTIRegistrantCountry | Country of the registrant |
-| $BCTIRegistrantEmail  | Email contact of registrant  |
+| $BCTIRegistrantEmail  | Email address of the registrant  |
 | $BCTIRegistrantFax | Fax details of registrant |
-| $BCTIRegistrantFaxext | Fax extention of registrant |
+| $BCTIRegistrantFaxext | Fax extension number of the registrant |
 | $BCTIRegistrantName  |  Name of the registrant  |
-| $BCTIRegistrantOrganization  | Organization of the registrant  |
-| $BCTIRegistrantPostalCode  | Postal Code of the registrant  |
+| $BCTIRegistrantOrganization  | Organization that the registrant belongs to  |
+| $BCTIRegistrantPostalCode  | Postal code of the registrant  |
 | $BCTIRegistrantState  | State of the registrant   |
-| $BCTIRegistrantStreet1  | Street address of the registrant  |
-| $BCTIRegistrantStreet2  | Street address of the registrant  |
-| $BCTIRegistrantStreet3  | Street address of the registrant  |
-| $BCTIRegistrantStreet4  | Street address of the registrant  |
-| $BCTIRegistrantTelephone  | Telephone of the registrant  |
-| $BCTIRegistrantTelephoneext  | Telephone extention of the registrant   |
+| $BCTIRegistrantStreet1  | Street address line 1 of the registrant  |
+| $BCTIRegistrantStreet2  | Street address line 2 of the registrant  |
+| $BCTIRegistrantStreet3  | Street address line 3 of the registrant  |
+| $BCTIRegistrantStreet4  | Street address line 4 of the registrant  |
+| $BCTIRegistrantTelephone  | Telephone number of the registrant  |
+| $BCTIRegistrantTelephoneext  | Telephone extension number of the registrant   |
 | $BCTIRegistrantPostalCode | Postal code of registrant |
-| $BCTIWhoIsServer | WHOIS Server name |
+| $BCTIWhoIsServer | Name of the WHOIS server |
 | $BCTIRegistrarName  | Name of the Registrar  |
-| $BCTIStandardRegCreatedDate  | Standard registry created date |
-| $BCTIStandardRegExpiresDate | Standard registry expiry date  |
-| $BCTIStandardRegUpdatedDate | Standard registry updated date  |
-| $BCTIstatus | Status of domain associated with domain |
-| $BCTIAPIStatus | Returns the API status code of the request made |
+| $BCTIStandardRegCreatedDate  | Standard registry creation date |
+| $BCTIStandardRegExpiresDate | Standard registry expiry date |
+| $BCTIStandardRegUpdatedDate | Standard registry updation date  |
+| $BCTIstatus | Status of the URL’s domain |
+| $BCTIAPIStatus | API status code of the request |
 
-##### Retrieve the phishing score on the object (URL or IP). 
-This is a synchronous call so server waits for all URIs to be processed before response to the request.
-- input : An URL or IP for which you want to retrieve information.        
+### get_phishingscore
+
+This function returns the phishing score of the object. As this is a synchronous call, the server waits for all the URIs to be processed before responding to the request.
+#### Input 
+- URL or IP address    
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_phishingscore $SrcIP
 ```
-###### Sample Output 
+#### Output 
+The output of the query is as shown below  
 ![get_phishingscore](https://user-images.githubusercontent.com/37173181/41521924-b0e67cb6-72f1-11e8-8da4-cf85a5c188da.jpg)
-The Lookup call returns output in the following structure for available data
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIPhishScore   | Threat level returned from BCTI ranges from 1 to 100. The higher the score, the higher probability that the url is a phishing site. |
-| $BCTIPhishTarget  | Target of the phishing |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIPhishScore   | <ul><li>Threat level returned by BCTI (between 1 and 100)</li><li>The higher the score, the higher is the probability that the URL is a phishing site</li></ul>|
+| $BCTIPhishTarget  | Target of the phishing attack |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Submit phishquery on the object (URL or IP). 
-This is used for sending URIs (URL or IP) where you call back later to get result.
-- input : An URL or IP for which you want to retrieve information.        
+### submit_phishquery 
+This function returns a phish response ticket corresponding to the request. It asynchronously passes a URI (URL or IP address) as a parameter and gets a ticket as the response. This ticket can be stored and used  to get the actual phishing score later.
+
+#### Input 
+- URL or IP address
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot submit_phishquery $SrcIP
 >>_store in_disk wbticket stack_replace
 ```
-###### Sample Output 
-
+#### Output 
+The output of the query is as shown below  
 ![get_submitphishquerywithstore](https://user-images.githubusercontent.com/37173181/41522871-8d827e6a-72f5-11e8-8610-1fa24f65d851.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIPhishRequestTicket  | Returns a phishresponse ticket which can be used to query later  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIPhishRequestTicket  | Phish response ticket that can be used later to get the phishing score  |
+| $BCTIAPIStatus| API status code of the request |
 
-##### Note 
-The returned $BCTIPhishRequestTicket can be stored in the DNIF console using the store directive .  
-Which can later be used to retrive response with the  get_phishqueryresponse endpoint.
-
+#### Note 
+The $BCTIPhishRequestTicket returned by this function can be stored in DNIF  using the _store directive. 
+This can be used later, with the get_phishqueryresponse function, to get the phishing score of the URI.
             
-##### Retrieve the phish query response for the ticket. 
-This will use the phishrequestticket to request result.
-- input : String of phish request ticket.        
+### get_phishqueryresponse 
+This function returns the phishing score of a URI using the $BCTIPhishRequestTicket obtained earlier using the submit_phishquery function.
+
+#### Input 
+- Ticket number of the phishing request (string)
+
+#### Example
 ```
 _retrieve wbticket 
 >>_lookup webroot get_phishqueryresponse $BCTIPhishRequestTicket
 ```
-###### Sample Output 
-
+#### Output 
+The output of the query is as shown below
 ![get_phishqueryresponse](https://user-images.githubusercontent.com/37173181/41523643-6421825c-72f8-11e8-9c9b-b9d122ddca45.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIPhishScore   | Threat level returned from BCTI ranges from 1 to 100. The higher the score, the higher probability that the url is a phishing site. |
-| $BCTIPhishTarget  | Target of the phishing |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIPhishScore   | <ul><li>Threat level returned by BCTI (between 1 and 100)</li><li>The higher the score, the higher is the probability that the URL is a phishing site</li></ul> |
+| $BCTIPhishTarget  | Target of phishing |
+| $BCTIAPIStatus| API status code of the request |
 
-##### Note 
-using the stored ticket from the submit phishquery endpoint we retrieve the information from this endpoint
+#### Note 
+Using the _retrieve directive in DNIF ,the stored ticket from the submit_phishquery endpoint is used as an input parameter to retrieve information from this endpoint.
 
-##### Retrieve IP information  
-Returns content classification and reputation information on the queried IP address.
-- input : An IP address for which you want to retrieve information.        
+### get_ip_info  
+This function returns information about the reputation and content classification of the queried IP address
+#### Input 
+- IP address 
+
+#### Example
 ```
-_fetch $Url from threatsample limit 1
->>_lookup webroot get_url_info $Url
+_fetch $SrcIP from threatsample limit 1
+>>_lookup webroot get_ip_info $SrcIP
+
 ```
-###### Sample Output 
+#### Output 
+The output of the query is as shown below
 ![get_ip_info](https://user-images.githubusercontent.com/37173181/41530733-c4780f48-730e-11e8-90aa-31c1990e039a.jpg)
 
-The Lookup call returns output in the following structure for available data
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIIPInt    | Integer representation of the requested IP Address. |
-| $BCTIIPStatus | Binary value of the Threat IP status.Possible values are (1 and 2), 1 means in Threat IP list ,0 means not in Threat IP list |
-| $BCTICurrentReleaseDate | Represents the exit date that the Threat IP is removed from the Threat IP list. This field is empty if the IP Address is no longer in the Threat IP list |
-| $BCTIDomain | If IP Address has a corresponding unique domain name in Webroot Master DB, the domain name is shown here empty if not in Master DB) |
-| $BCTIDomainAge | The age of the unique domain associated with the IP Address in Webroot Master DB since the discovery of the domain by Webroot (empty if not in Master DB) |
-| $BCTIFirstReleaseDate | Represents the date associated with the first time that an IP Address is released from the   Threat IP list. |
-| $BCTILastReleaseDate  | Represents the date associated with the last time that an IP Address is released from the    Threat IP list.  |
-| $BCTIThreatCount  | The number of times the IP address has appeared on Threat IP list.  |
-| $BCTIThreatMask  | Information on specific threat(s) that associated with requested IP. Bit number corresponds with the Threat Mask category.  |
-| $BCTIReputation  | Reputation score from 1-100 of this IP.  |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIIPInt    | Integer representation of the specified IP address |
+| $BCTIIPStatus | <ul><li>Threat status of the IP address</li><li>1:  IP address is in the threat IP list</li><li>0: IP address is not in the threat IP list</li></ul> |
+| $BCTICurrentReleaseDate | <ul><li>Date when the threat IP is removed from the Threat IP list</li><li>This field is empty if the IP address is no longer in the threat IP list.</li></ul> |
+| $BCTIDomain | <ul><li>omain name corresponding to the IP address (as per the Webroot Master DB)</li><li>This field is empty if the unique domain name is not present in the Master DB</li></ul> |
+| $BCTIDomainAge | <ul><li>Age of the unique domain name of the IP address (as per the Webroot Master DB) since the discovery of the domain by Webroot</li><li>This field is empty if the is not present in the Master DB</li></ul> |
+| $BCTIFirstReleaseDate | Date when the IP address was released for the first time from the threat IP list |
+| $BCTILastReleaseDate  | Date when the IP address was released for the last time from the threat IP list  |
+| $BCTIThreatCount  | Number of times the IP address has appeared on the threat IP list  |
+| $BCTIThreatMask  | <ul><li>Information on specific threat(s) associated with the requested IP address </li><li>The bit number corresponds with the Threat Mask category </li></ul>  |
+| $BCTIReputation  | <ul><li>Reputation score (between 1 and 100) of this IP address</li><li> [Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification</li></ul> |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Retrieve IP geo information  
-Returns geo information on the queried IP address.
-- input : An IP address for which you want to retrieve information.        
+### get_ip_geoinfo  
+This function returns geographical information of the queried IP address.
+
+#### Input 
+- IP address 
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_ip_geoinfo $SrcIP
 ```
-###### Sample walk-through video link for IP geo information
+#### Output
 
-[Get IP GEO INFO](https://drive.google.com/file/d/1KpBZxloQ3OT29lzb3H3TwJpuhATDFX8y/view?usp=sharing)
-The Lookup call returns output in the following structure for available data
+
+Click [here](https://drive.google.com/file/d/1KpBZxloQ3OT29lzb3H3TwJpuhATDFX8y/view?usp=sharing) to view the output of the above example.
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIASN    | Autonomous system number where this ip belongs to  |
-| $BCTICarrier | Carrier where this ip belongs to |
-| $BCTICity | City name from geo file |
-| $BCTICountry | Country name from geo file |
-| $BCTIRegion  | Region name from geo file  |
-| $BCTIState  | State name from geo file  |
-| $BCTILatitude | Latitude of this ip |
-| $BCTILongitude | Longitude of this ip |
-| $BCTIOrganization  | Organization where this ip belongs to  |
-| $BCTISecondLevelDomain  | Second-level domain of this ip  |
-| $BCTITopLevelDomain | Top-level domain of this ip |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIASN    | Autonomous system number of this IP address |
+| $BCTICarrier | Carrier of this IP address |
+| $BCTICity | City of this IP address |
+| $BCTICountry | Country of this IP address |
+| $BCTIRegion  | Region of this IP address  |
+| $BCTIState  | State of this IP address  |
+| $BCTILatitude | Latitude of this IP address  |
+| $BCTILongitude | Longitude of this IP address |
+| $BCTIOrganization  | Organization that this IP address belongs to  |
+| $BCTISecondLevelDomain  | Second-level domain of this IP address |
+| $BCTITopLevelDomain | Top-level domain of this IP address |
+| $BCTIAPIStatus| API status code of the request |
 
-##### Retrieve IP threat history   
-Returns threat history of the requested IP.
-- input : An IP address for which you want to retrieve information.        
+### get_ip_threathistory
+The function returns the threat history of the queried IP address.
+
+#### Input 
+- IP address 
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_ip_threathistory $SrcIP
 ```
-###### Sample walk-through video link for IP threat history
-[GET IP THREATHISTORY](https://drive.google.com/file/d/1DoSttzPMvL2I7rpMSRWc3ZLPNz1Ll9tR/view?usp=sharing)
 
-The Lookup call returns output in the following structure for available data
+#### Output
 
-  | Fields        | Description  |
-|:------------- |:-------------|
-| $BCTIThreatTypes    | Autonomous system number where this ip belongs to  |
-| $BCTIThreatCount | Carrier where this ip belongs to |
-| $BCTIAPIStatus| Returns the API status code of the request made |
-
-The report also includes variable fields depending on the positive detections. For example, an ip identified as threat type botnets  would have the following fields
+Click [here](https://drive.google.com/file/d/1DoSttzPMvL2I7rpMSRWc3ZLPNz1Ll9tR/view?usp=sharing) to view the output of the above example.
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIThreatTypeBotnets | a list of timestamp when the IP was seen as a botnet  |
+| $BCTIThreatTypes    | Different types of threats detected on specified IP address |
+| $BCTIThreatCount | Count of detected threats on specified IP address |
+| $BCTIAPIStatus| API status code of the request |
+
+The report can also include additional fields depending on positive threat detections. For example, an IP address identified as a threat of type botnets would have the following field(s)
+
+  | Fields        | Description  |
+|:------------- |:-------------|
+| $BCTIThreatTypeBotnets | List of timestamps when the IP address was seen as a botnet  |
 
 
-##### Retrieve IP reputation history   
-Returns the historic reputation score for the requested IPs. Prior to September 27, 2015 the reputation scoring is rounded. A new scoring history is recorded for an IP only if the change in reputation score exceeds a preset threshold or if there is a change in threat status (threat/non-threat)
+### get_ip_rephistory
+This function returns the historic reputation score for the requested IP address. Prior to September 27, 2015 the reputation scoring was being rounded. Post that date, the reputation score can have decimal values. A new scoring history is recorded for an IP address only if the change in reputation score exceeds a preset threshold or, if there is a change in threat status (threat/non-threat).
 
-- input : An IP address for which you want to retrieve information.        
+#### Input 
+- IP address 
+
+#### Example
 ```
 _fetch $SrcIP from threatsample limit 1
 >>_lookup webroot get_ip_rephistory $SrcIP
 ```
-###### Sample walk-through video link for IP reputation history
-[GET IP REPUTATION HISTORY ](https://drive.google.com/file/d/1sV8Vhqe0AZhBkn26W7QU1nYeSe_aaovy/view?usp=sharing)
+#### Output
 
-The Lookup call returns output in the following structure for available data
+Click [here](https://drive.google.com/file/d/1sV8Vhqe0AZhBkn26W7QU1nYeSe_aaovy/view?usp=sharing) to view the output of the above example.
+
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIAverageReputation   | Decimal number representing the average reputation of the IP  |
-| $BCTIHistoryCount | Number representing the number of time the IP reputation is recorded. |
-| $BCTIMaxReputation | Number representing the highest recorded reputation of the IP |
-| $BCTIMinReputation | Number representing the lowest recorded reputation of the IP |
-| $BCTIReputationHighRisk | List of time stamp when IP had a high risk reputation  |
-| $BCTIReputationSuspicious | List of time stamp when IP had a suspicious reputation  |
-| $BCTIReputationTrustworthy | List of time stamp when IP had a Trustworthy reputation |
-| $BCTIAPIStatus| Returns the API status code of the request made |
+| $BCTIAverageReputation   | <ul><li>Decimal number representing the average reputation score of the IP address </li><li> [Refer to the Reputation and popularity section](#reputation-and-popularity) for details on reputation score classification</li></ul> |
+| $BCTIHistoryCount | Number of times the IP address’ reputation score has been recorded |
+| $BCTIMaxReputation | Highest recorded reputation score of the IP address |
+| $BCTIMinReputation | Lowest recorded reputation score of the IP address |
+| $BCTIReputationHighRisk | List of timestamps from when the IP address had a high risk reputation score  |
+| $BCTIReputationSuspicious | List of timestamps from when the IP address had a suspicious reputation score  |
+| $BCTIReputationTrustworthy | List of timestamps from when the IP address had a trustworthy reputation |
+| $BCTIAPIStatus| API status code of the request |
 
 
-##### Retrieve file information 
-Returns file information given its binary MD5 .
-- input : String of MD5 of file for which you want to retrieve information.        
+### get_file_info
+This function returns  information about a file based on its binary MD5 hash.
+
+#### Input 
+- MD5 hash (string)
+#### Example
 ```
 _fetch $Filehash from threatsample where $Filehash=ec8c89aa5e521572c74e2dd02a4daf78 limit 1
 >>_lookup webroot get_file_info $Filehash
 ```
-###### Sample walk-through video link for file information
-[GET FILE INFO](https://drive.google.com/file/d/1i50yeKcTShvKZC7Gu8K7cMwzpv6zzgTl/view?usp=sharing)
-The Lookup call returns output in the following structure for available data
+#### Output
+
+Click [here](https://drive.google.com/file/d/1i50yeKcTShvKZC7Gu8K7cMwzpv6zzgTl/view?usp=sharing) to view the output of the above example.
+The output of the lookup call has the following structure (for the available data)
 
   | Fields        | Description  |
 |:------------- |:-------------|
-| $BCTIDeterminationDate   | Determination time of this file . |
-| $BCTIDeterminationType | Determination type. Possible values : B and G. |
-| $BCTIFileSize | File size in byte . |
-| $BCTIFirstSeen | First time the md5 has been detected . |
-| $BCTIMalwareGroup | Malware group of this file . |
-| $BCTIMd5 | The MD5 of the file . |
-| $BCTIPropagationCount | Scaled approximation of the propagation of the file . |
-| $BCTIAPIStatus| Returns the API status code of the request made . |
+| $BCTIDeterminationDate   | Determination (classification) timestamp of this file |
+| $BCTIDeterminationType | Determination type (Bad or Good) |
+| $BCTIFileSize | File size in bytes |
+| $BCTIFirstSeen | First time the MD5 was detected |
+| $BCTIMalwareGroup | Malware group of the file |
+| $BCTIMd5 | MD5 hash of the file |
+| $BCTIPropagationCount | Scaled approximation of the propagation of the file |
+| $BCTIAPIStatus| API status code of the request  |
 
 
 ##### Retrieve IP reputation history   
