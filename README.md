@@ -55,9 +55,10 @@ The output of the enrichment has the following structure (for the available data
 | KLPopularity  | Popularity of the IOC with Kaspersky |
 | KLIndustry  | Targeted Industry of the IOC |
 
-The API also returns WHOIS information for IOC as and when present as follows
-  | Fields        | Description  |
-| ------------- |:-------------:|
+The API also returns WHOIS information for IOC as and when present as follows  
+  
+  | Fields        | Description  |  
+| ------------- |:-------------:|  
 | KLRegistrarName  | Registry name present in WHOIS record | 
 | KLCity  | City details present in WHOIS record |
 | KLCountry  | Country details present in WHOIS record |
